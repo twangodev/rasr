@@ -14,6 +14,16 @@ canonical_transform = jiwer.Compose(
     ]
 )
 
+canonical_char_transform = jiwer.Compose(
+    [
+        jiwer.ToLowerCase(),
+        jiwer.RemovePunctuation(),
+        jiwer.RemoveMultipleSpaces(),
+        jiwer.Strip(),
+        jiwer.ReduceToListOfListOfChars(),
+    ]
+)
+
 
 def corpus_wer(refs: list[str], hyps: list[str]) -> float:
     """Aggregate WER across all utterances (jiwer's default — weighted by ref length)."""
@@ -30,7 +40,6 @@ def corpus_wer(refs: list[str], hyps: list[str]) -> float:
 
 
 def utt_wer(ref: str, hyp: str) -> float:
-    """WER for a single utterance."""
     return float(
         jiwer.wer(
             ref,
@@ -41,21 +50,39 @@ def utt_wer(ref: str, hyp: str) -> float:
     )
 
 
-def summarize(per_utt: list[float]) -> dict:
-    """Distribution stats over per-utterance WER values.
+def corpus_cer(refs: list[str], hyps: list[str]) -> float:
+    if not refs:
+        return float("nan")
+    return float(
+        jiwer.cer(
+            refs,
+            hyps,
+            reference_transform=canonical_char_transform,
+            hypothesis_transform=canonical_char_transform,
+        )
+    )
 
-    Surfaces median/p90/runaway-count so a few hallucinations don't silently
-    dominate the headline corpus WER.
-    """
+
+def utt_cer(ref: str, hyp: str) -> float:
+    return float(
+        jiwer.cer(
+            ref,
+            hyp,
+            reference_transform=canonical_char_transform,
+            hypothesis_transform=canonical_char_transform,
+        )
+    )
+
+
+def summarize(per_utt: list[float], prefix: str) -> dict:
+    """Distribution stats (mean/median/p90/max) over per-utterance error rates."""
     if not per_utt:
-        return {"n": 0}
+        return {}
     return {
-        "n": len(per_utt),
-        "wer_mean": float(statistics.mean(per_utt)),
-        "wer_median": float(statistics.median(per_utt)),
-        "wer_p90": _percentile(per_utt, 90),
-        "wer_max": float(max(per_utt)),
-        "n_runaway": sum(1 for w in per_utt if w > 1.0),
+        f"{prefix}_mean": float(statistics.mean(per_utt)),
+        f"{prefix}_median": float(statistics.median(per_utt)),
+        f"{prefix}_p90": _percentile(per_utt, 90),
+        f"{prefix}_max": float(max(per_utt)),
     }
 
 

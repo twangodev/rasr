@@ -9,7 +9,7 @@ from pathlib import Path
 from radiotalk.normalize import normalize
 
 from rasr.datasets import load_dataset
-from rasr.eval.metrics import corpus_wer, summarize, utt_wer
+from rasr.eval.metrics import corpus_cer, corpus_wer, summarize, utt_cer, utt_wer
 from rasr.models import load_model
 from rasr.models.base import AudioInput
 from rasr.store import RunManifest, git_sha, new_run_id, write_manifest
@@ -47,7 +47,8 @@ def run_eval(
     transcripts_path = run_dir / "transcripts.jsonl"
     hyps: list[str] = []
     refs: list[str] = []
-    per_utt: list[float] = []
+    per_utt_wer: list[float] = []
+    per_utt_cer: list[float] = []
 
     source = iter(dataset)
     if limit is not None:
@@ -61,9 +62,11 @@ def run_eval(
                 hyp = normalize(hyp_raw)
                 ref = normalize(utt.reference)
                 w = utt_wer(ref, hyp)
+                c = utt_cer(ref, hyp)
                 hyps.append(hyp)
                 refs.append(ref)
-                per_utt.append(w)
+                per_utt_wer.append(w)
+                per_utt_cer.append(c)
                 f.write(
                     json.dumps(
                         {
@@ -73,13 +76,20 @@ def run_eval(
                             "hypothesis_raw": hyp_raw,
                             "hypothesis": hyp,
                             "wer": w,
+                            "cer": c,
                         }
                     )
                     + "\n"
                 )
 
-    corpus = corpus_wer(refs, hyps)
-    summary = {"corpus_wer": corpus, **summarize(per_utt)}
+    summary = {
+        "corpus_wer": corpus_wer(refs, hyps),
+        "corpus_cer": corpus_cer(refs, hyps),
+        "n": len(per_utt_wer),
+        **summarize(per_utt_wer, "wer"),
+        **summarize(per_utt_cer, "cer"),
+        "n_runaway": sum(1 for w in per_utt_wer if w > 1.0),
+    }
 
     manifest = RunManifest(
         run_id=run_id,
@@ -98,4 +108,6 @@ def run_eval(
     write_manifest(run_dir, manifest)
     (run_dir / "scores.json").write_text(json.dumps(summary, indent=2))
 
-    return EvalResult(run_dir=run_dir, corpus_wer=corpus, summary=summary)
+    return EvalResult(
+        run_dir=run_dir, corpus_wer=summary["corpus_wer"], summary=summary
+    )
