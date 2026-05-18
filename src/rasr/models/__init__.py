@@ -13,6 +13,21 @@ def load_model(model_id: str) -> Model:
 
         return WhisperModel(ref)
 
+    if scheme == "qwen-asr":
+        from rasr.models.qwen import QwenAsrModel
+
+        return QwenAsrModel(ref)
+
+    if scheme == "cohere":
+        from rasr.models.cohere import CohereAsrModel
+
+        return CohereAsrModel(ref)
+
+    if scheme == "granite-speech":
+        from rasr.models.granite_speech import GraniteSpeechModel
+
+        return GraniteSpeechModel(ref)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
