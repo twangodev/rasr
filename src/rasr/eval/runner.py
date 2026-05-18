@@ -28,11 +28,11 @@ def _radiotalk_version() -> str:
 
 def run_eval(
     model_id: str,
-    dataset_path: Path,
+    dataset_spec: str,
     out_dir: Path,
     limit: int | None = None,
 ) -> EvalResult:
-    dataset = load_dataset(dataset_path)
+    dataset = load_dataset(dataset_spec)
     model = load_model(model_id)
 
     run_id = new_run_id(model_id, dataset.id)

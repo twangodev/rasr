@@ -23,14 +23,11 @@ def run(
         ),
     ],
     dataset: Annotated[
-        Path,
+        str,
         typer.Option(
             "--dataset",
             "-d",
-            help="Path to dataset manifest (JSONL).",
-            exists=True,
-            dir_okay=False,
-            readable=True,
+            help="Dataset spec: 'hf:<owner>/<repo>[:<split>]' or path to a JSONL manifest.",
         ),
     ],
     out: Annotated[
@@ -45,7 +42,7 @@ def run(
     """Transcribe a dataset with a model and score WER."""
     result = run_eval(
         model_id=model,
-        dataset_path=dataset,
+        dataset_spec=dataset,
         out_dir=out,
         limit=limit,
     )

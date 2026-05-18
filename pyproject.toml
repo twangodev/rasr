@@ -3,6 +3,7 @@ name = "radiotalk-asr"
 version = "0.1.0"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "datasets>=4.8.5",
     "jiwer>=4.0.0",
     "numpy>=2.4.5",
     "pydantic>=2.13.4",
@@ -18,6 +19,8 @@ rasr = "rasr.cli:app"
 [project.optional-dependencies]
 whisper = [
     "torch>=2.12.0",
+    "torchaudio>=2.11.0",
+    "torchcodec>=0.12.0",
     "transformers>=5.8.1",
 ]
 
