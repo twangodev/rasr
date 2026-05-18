@@ -2,6 +2,20 @@ from __future__ import annotations
 
 from rasr.models.base import AudioInput
 
+_ISO_TO_NAME = {
+    "en": "English",
+    "zh": "Chinese",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "ru": "Russian",
+    "ar": "Arabic",
+}
+
 
 class QwenAsrModel:
     def __init__(
@@ -24,7 +38,7 @@ class QwenAsrModel:
             max_inference_batch_size=max_inference_batch_size,
             max_new_tokens=max_new_tokens,
         )
-        self.language = language
+        self.language = _ISO_TO_NAME.get(language, language) if language else None
 
     def transcribe(self, audios: list[AudioInput]) -> list[str]:
         if not audios:

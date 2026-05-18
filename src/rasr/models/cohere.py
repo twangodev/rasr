@@ -18,10 +18,12 @@ class CohereAsrModel:
     def __init__(
         self,
         hf_id: str,
-        language: str = "en",
+        language: str | None = None,
         punctuation: bool = True,
         max_new_tokens: int = 440,
     ):
+        # Cohere's processor requires a language; default to English when unset.
+        language = language or "en"
         import torch
         from transformers import AutoProcessor, CohereAsrForConditionalGeneration
 

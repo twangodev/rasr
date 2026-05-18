@@ -3,7 +3,12 @@ from __future__ import annotations
 from rasr.models.base import Model
 
 
-def load_model(model_id: str) -> Model:
+def load_model(model_id: str, *, language: str | None = None) -> Model:
+    """Resolve a model spec to a Model instance.
+
+    `language` is an ISO 639-1 code ('en', 'de', ...) or None for auto-detect.
+    Each adapter maps the code to its model's preferred format internally.
+    """
     scheme, _, ref = model_id.partition(":")
     if not ref:
         raise ValueError(f"Model ID must be '<scheme>:<ref>', got: {model_id!r}")
@@ -11,22 +16,22 @@ def load_model(model_id: str) -> Model:
     if scheme == "whisper":
         from rasr.models.whisper import WhisperModel
 
-        return WhisperModel(ref)
+        return WhisperModel(ref, language=language)
 
     if scheme == "qwen-asr":
         from rasr.models.qwen import QwenAsrModel
 
-        return QwenAsrModel(ref)
+        return QwenAsrModel(ref, language=language)
 
     if scheme == "cohere":
         from rasr.models.cohere import CohereAsrModel
 
-        return CohereAsrModel(ref)
+        return CohereAsrModel(ref, language=language)
 
     if scheme == "granite-speech":
         from rasr.models.granite_speech import GraniteSpeechModel
 
-        return GraniteSpeechModel(ref)
+        return GraniteSpeechModel(ref, language=language)
 
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 

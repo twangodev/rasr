@@ -35,9 +35,10 @@ def run_eval(
     out_dir: Path,
     batch_size: int = 8,
     limit: int | None = None,
+    language: str | None = None,
 ) -> EvalResult:
     dataset = load_dataset(dataset_spec)
-    model = load_model(model_id)
+    model = load_model(model_id, language=language)
 
     run_id = new_run_id(model_id, dataset.id)
     run_dir = out_dir / run_id

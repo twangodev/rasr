@@ -43,6 +43,14 @@ def run(
         int | None,
         typer.Option("--limit", help="Limit number of utterances."),
     ] = None,
+    language: Annotated[
+        str | None,
+        typer.Option(
+            "--language",
+            "-l",
+            help="ISO 639-1 language hint (e.g. 'en'). Unset = auto-detect.",
+        ),
+    ] = None,
 ) -> None:
     """Transcribe a dataset with a model and score WER."""
     result = run_eval(
@@ -51,6 +59,7 @@ def run(
         out_dir=out,
         batch_size=batch_size,
         limit=limit,
+        language=language,
     )
     console.print(f"[green]Run complete:[/green] {result.run_dir}")
 

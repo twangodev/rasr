@@ -6,9 +6,29 @@ from rasr.models.base import AudioInput
 
 TARGET_SR = 16000
 
-_USER_PROMPT = (
-    "<|audio|>transcribe the speech with proper punctuation and capitalization."
-)
+_ISO_TO_NAME = {
+    "en": "English",
+    "zh": "Chinese",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "ru": "Russian",
+    "ar": "Arabic",
+}
+
+
+def _user_prompt(language: str | None) -> str:
+    if language is None:
+        return "<|audio|>transcribe the speech with proper punctuation and capitalization."
+    lang = _ISO_TO_NAME.get(language, language)
+    return (
+        f"<|audio|>transcribe the {lang} speech with proper punctuation "
+        "and capitalization."
+    )
 
 
 class GraniteSpeechModel:
@@ -23,6 +43,7 @@ class GraniteSpeechModel:
     def __init__(
         self,
         hf_id: str,
+        language: str | None = None,
         max_new_tokens: int = 256,
     ):
         import torch
@@ -42,7 +63,7 @@ class GraniteSpeechModel:
         self.max_new_tokens = max_new_tokens
         self._device = device
         self._chat_prompt = self.tokenizer.apply_chat_template(
-            [{"role": "user", "content": _USER_PROMPT}],
+            [{"role": "user", "content": _user_prompt(language)}],
             tokenize=False,
             add_generation_prompt=True,
         )
