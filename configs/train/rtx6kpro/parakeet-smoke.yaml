@@ -1,0 +1,25 @@
+# 500-step smoke run. Validates the train -> .nemo -> eval loop.
+# Expected wall clock: ~10 min on the 6000 Pro.
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-smoke
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-tada-noisy:train
+      weight: 1.0
+      limit: 10000
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+trainer:
+  max_steps: 500
+  val_check_interval: 100
+
+output:
+  dir: ckpt/${name}

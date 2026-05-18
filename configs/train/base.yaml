@@ -1,0 +1,31 @@
+# Hardware-agnostic defaults. Inherited by every recipe.
+
+optimizer:
+  name: adamw
+  lr: 1.0e-4
+  betas: [0.9, 0.98]
+  weight_decay: 1.0e-3
+
+scheduler:
+  name: CosineAnnealing
+  warmup_steps: 5000
+  min_lr: 1.0e-6
+
+augmentation:
+  spec_augment:
+    freq_masks: 2
+    time_masks: 10
+    freq_width: 27
+    time_width: 0.05
+  speed_perturb:
+    enabled: true
+    prob: 0.5
+    min_rate: 0.95
+    max_rate: 1.05
+  noise:
+    enabled: false
+
+output:
+  save_top_k: 3
+  monitor: val_wer
+  mode: min

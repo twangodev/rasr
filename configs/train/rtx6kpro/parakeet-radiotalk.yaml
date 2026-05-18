@@ -1,0 +1,24 @@
+# 20k-step radiotalk-only baseline. The "what does synthetic data alone get us"
+# experiment. Expected wall clock: ~2 hours on the 6000 Pro.
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-radiotalk
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-tada-noisy:train
+      weight: 1.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+trainer:
+  max_steps: 20000
+  val_check_interval: 1000
+
+output:
+  dir: ckpt/${name}

@@ -1,0 +1,33 @@
+# 50k-step mixed run. Radiotalk synthetic at scale + real ATCO2/ATCOSIM
+# upweighted to anchor distribution. Target: beat jlvdoorn's 15.7% on ATCO2 val.
+# Expected wall clock: ~5 hours on the 6000 Pro.
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-mixed
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-tada-noisy:train
+      weight: 1.0
+    - dataset: hf:jlvdoorn/atco2-asr:train
+      weight: 10.0           # upweight real ATC ~10x; synthetic provides scale
+    - dataset: hf:jlvdoorn/atco2-asr-atcosim:train
+      weight: 10.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+augmentation:
+  noise:
+    enabled: true             # only for mixed; real radiotalk audio is already noisy
+
+trainer:
+  max_steps: 50000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}

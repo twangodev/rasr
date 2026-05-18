@@ -1,0 +1,16 @@
+# NVIDIA RTX PRO 6000 Blackwell Workstation Edition — 96 GB GDDR7.
+
+trainer:
+  precision: bf16-mixed       # native Blackwell, not the deprecated "bf16" alias
+  devices: 1
+  batch_size: 32              # ~35 GB peak at 16 kHz / 18s max; headroom remains
+  num_workers: 16
+  accumulate_grad_batches: 1
+  gradient_clip_val: 1.0
+
+data:
+  audio:
+    sample_rate: 16000
+    max_duration: 18.0        # TDT joint OOMs above this
+    min_duration: 0.1
+  use_lhotse: true            # stream HF parquet, don't pre-dump WAVs
