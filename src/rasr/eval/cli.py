@@ -5,6 +5,7 @@ from typing import Annotated
 
 import typer
 from rich.console import Console
+from rich.table import Table
 
 from rasr.eval.runner import run_eval
 
@@ -34,6 +35,10 @@ def run(
         Path,
         typer.Option("--out", "-o", help="Runs directory."),
     ] = Path("runs"),
+    batch_size: Annotated[
+        int,
+        typer.Option("--batch-size", "-b", help="Utterances per model call."),
+    ] = 8,
     limit: Annotated[
         int | None,
         typer.Option("--limit", help="Limit number of utterances."),
@@ -44,7 +49,17 @@ def run(
         model_id=model,
         dataset_spec=dataset,
         out_dir=out,
+        batch_size=batch_size,
         limit=limit,
     )
     console.print(f"[green]Run complete:[/green] {result.run_dir}")
-    console.print(f"[bold]WER:[/bold] {result.wer:.4f}")
+
+    table = Table(show_header=False, box=None, pad_edge=False)
+    table.add_column(style="bold")
+    table.add_column()
+    for key, value in result.summary.items():
+        if isinstance(value, float):
+            table.add_row(key, f"{value:.4f}")
+        else:
+            table.add_row(key, str(value))
+    console.print(table)

@@ -21,7 +21,7 @@ class HfDataset:
         repo: str,
         split: str = "train",
         reference_field: str = "text_normalized",
-        utt_id_fields: tuple[str, ...] = ("scenario_id", "turn_idx"),
+        utt_id_fields: tuple[str, ...] = ("scenario_id", "turn_idx", "variant_idx"),
         meta_fields: tuple[str, ...] = (
             "speaker",
             "profile",
