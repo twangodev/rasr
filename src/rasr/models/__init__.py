@@ -33,6 +33,11 @@ def load_model(model_id: str, *, language: str | None = None) -> Model:
 
         return GraniteSpeechModel(ref, language=language)
 
+    if scheme == "parakeet":
+        from rasr.models.parakeet import ParakeetModel
+
+        return ParakeetModel(ref, language=language)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
