@@ -2,16 +2,40 @@ version = 1
 revision = 3
 requires-python = "==3.12.*"
 resolution-markers = [
-    "platform_machine != 's390x' and sys_platform == 'win32'",
-    "platform_machine == 's390x' and sys_platform == 'win32'",
-    "platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
 ]
 conflicts = [[
     { package = "radiotalk-asr", extra = "qwen-asr" },
     { package = "radiotalk-asr", extra = "whisper" },
+], [
+    { package = "radiotalk-asr", extra = "parakeet" },
+    { package = "radiotalk-asr", extra = "whisper" },
+], [
+    { package = "radiotalk-asr", extra = "cohere-asr" },
+    { package = "radiotalk-asr", extra = "parakeet" },
+], [
+    { package = "radiotalk-asr", extra = "granite-speech" },
+    { package = "radiotalk-asr", extra = "parakeet" },
 ]]
 
 [[package]]
@@ -28,8 +52,8 @@ name = "accelerate"
 version = "1.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
     { name = "numpy" },
     { name = "packaging" },
     { name = "psutil" },
@@ -251,7 +275,7 @@ name = "cffi"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "implementation_name != 'PyPy' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "pycparser", marker = "implementation_name != 'PyPy' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz", hash = "sha256:44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529", size = 523588, upload-time = "2025-09-08T23:24:04.541Z" }
 wheels = [
@@ -299,7 +323,7 @@ name = "click"
 version = "8.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/23/e4/796662cd90cf80e3a363c99db2b88e0e394b988a575f60a17e16440cd011/click-8.4.0.tar.gz", hash = "sha256:638f1338fe1235c8f4e008e4a8a254fb5c5fbdcbb40ece3c9142ebb78e792973", size = 350843, upload-time = "2026-05-17T00:47:58.425Z" }
 wheels = [
@@ -329,7 +353,7 @@ name = "colorlog"
 version = "6.10.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a2/61/f083b5ac52e505dfc1c624eafbf8c7589a0d7f32daa398d2e7590efa5fda/colorlog-6.10.1.tar.gz", hash = "sha256:eb4ae5cb65fe7fec7773c2306061a8e63e02efc2c72eba9d27b0fa23c94f1321", size = 17162, upload-time = "2025-10-16T16:14:11.978Z" }
 wheels = [
@@ -363,7 +387,7 @@ name = "cuda-bindings"
 version = "13.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cuda-pathfinder", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "cuda-pathfinder" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/52/c8/b2589d68acf7e3d63e2be330b84bc25712e97ed799affbca7edd7eae25d6/cuda_bindings-13.2.0-cp312-cp312-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:e865447abfb83d6a98ad5130ed3c70b1fc295ae3eeee39fd07b4ddb0671b6788", size = 5722404, upload-time = "2026-03-11T00:12:44.041Z" },
@@ -389,34 +413,34 @@ wheels = [
 
 [package.optional-dependencies]
 cudart = [
-    { name = "nvidia-cuda-runtime", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cuda-runtime", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 cufft = [
-    { name = "nvidia-cufft", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cufft", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 cufile = [
-    { name = "nvidia-cufile", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cufile", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 cupti = [
-    { name = "nvidia-cuda-cupti", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cuda-cupti", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 curand = [
-    { name = "nvidia-curand", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-curand", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 cusolver = [
-    { name = "nvidia-cusolver", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cusolver", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 cusparse = [
-    { name = "nvidia-cusparse", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cusparse", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 nvjitlink = [
-    { name = "nvidia-nvjitlink", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nvjitlink", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 nvrtc = [
-    { name = "nvidia-cuda-nvrtc", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cuda-nvrtc", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 nvtx = [
-    { name = "nvidia-nvtx", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nvtx", marker = "sys_platform == 'linux' or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 
 [[package]]
@@ -488,10 +512,11 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dill" },
     { name = "filelock" },
-    { name = "fsspec", extra = ["http"] },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" }, extra = ["http"], marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "fsspec", version = "2025.12.0", source = { registry = "https://pypi.org/simple" }, extra = ["http"], marker = "extra == 'extra-13-radiotalk-asr-cohere-asr' or extra == 'extra-13-radiotalk-asr-granite-speech' or extra != 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "httpx" },
-    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
     { name = "multiprocess" },
     { name = "numpy" },
     { name = "packaging" },
@@ -524,12 +549,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/81/e1/56027a71e31b02ddc
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1e/77/dc8c558f7593132cf8fefec57c4f60c83b16941c574ac5f619abb3ae7933/dill-0.4.1-py3-none-any.whl", hash = "sha256:1e1ce33e978ae97fcfcff5638477032b801c46c7c65cf717f95fbc2248f79a9d", size = 120019, upload-time = "2026-01-19T02:36:55.663Z" },
 ]
-
-[[package]]
-name = "distance"
-version = "0.1.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/5c/1a/883e47df323437aefa0d0a92ccfb38895d9416bd0b56262c2e46a47767b8/Distance-0.1.3.tar.gz", hash = "sha256:60807584f5b6003f5c521aa73f39f51f631de3be5cccc5a1d67166fcbf0d4551", size = 180271, upload-time = "2013-11-21T00:14:34.152Z" }
 
 [[package]]
 name = "docopt"
@@ -695,8 +714,35 @@ wheels = [
 
 [[package]]
 name = "fsspec"
+version = "2024.12.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "platform_machine != 's390x' and sys_platform == 'win32'",
+    "platform_machine == 's390x' and sys_platform == 'win32'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ee/11/de70dee31455c546fbc88301971ec03c328f3d1138cfba14263f651e9551/fsspec-2024.12.0.tar.gz", hash = "sha256:670700c977ed2fb51e0d9f9253177ed20cbde4a3e5c0283cc5385b5870c8533f", size = 291600, upload-time = "2024-12-19T19:57:30.333Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/de/86/5486b0188d08aa643e127774a99bac51ffa6cf343e3deb0583956dca5b22/fsspec-2024.12.0-py3-none-any.whl", hash = "sha256:b520aed47ad9804237ff878b504267a3b0b441e97508bd6d2d8774e3db85cee2", size = 183862, upload-time = "2024-12-19T19:57:28.258Z" },
+]
+
+[package.optional-dependencies]
+http = [
+    { name = "aiohttp", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+]
+
+[[package]]
+name = "fsspec"
 version = "2025.12.0"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "sys_platform == 'win32'",
+    "sys_platform == 'emscripten'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 sdist = { url = "https://files.pythonhosted.org/packages/b6/27/954057b0d1f53f086f681755207dda6de6c660ce133c829158e8e8fe7895/fsspec-2025.12.0.tar.gz", hash = "sha256:c505de011584597b1060ff778bb664c1bc022e87921b0e4f10cc9c44f9635973", size = 309748, upload-time = "2025-12-03T15:23:42.687Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/51/c7/b64cae5dba3a1b138d7123ec36bb5ccd39d39939f18454407e5468f4763f/fsspec-2025.12.0-py3-none-any.whl", hash = "sha256:8bf1fe301b7d8acfa6e8571e3b1c3d158f909666642431cc78a1b7b4dbc5ec5b", size = 201422, upload-time = "2025-12-03T15:23:41.434Z" },
@@ -704,22 +750,7 @@ wheels = [
 
 [package.optional-dependencies]
 http = [
-    { name = "aiohttp" },
-]
-
-[[package]]
-name = "g2p-en"
-version = "2.1.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "distance" },
-    { name = "inflect" },
-    { name = "nltk" },
-    { name = "numpy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5f/22/2c7acbe6164ed6cfd4301e9ad2dbde69c68d22268a0f9b5b0ee6052ed3ab/g2p_en-2.1.0.tar.gz", hash = "sha256:32ecb119827a3b10ea8c1197276f4ea4f44070ae56cbbd01f0f261875f556a58", size = 3116166, upload-time = "2019-12-31T01:16:12.753Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d7/d9/b77dc634a7a0c0c97716ba97dd0a28cbfa6267c96f359c4f27ed71cbd284/g2p_en-2.1.0-py3-none-any.whl", hash = "sha256:2a7aabf1fc7f270fcc3349881407988c9245173c2413debbe5432f4a4f31319f", size = 3117464, upload-time = "2019-12-31T01:16:03.286Z" },
+    { name = "aiohttp", marker = "extra == 'extra-13-radiotalk-asr-cohere-asr' or extra == 'extra-13-radiotalk-asr-granite-speech' or extra != 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 
 [[package]]
@@ -789,7 +820,8 @@ name = "gradio-client"
 version = "2.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "fsspec" },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "fsspec", version = "2025.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr')" },
     { name = "httpx" },
     { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" } },
     { name = "packaging" },
@@ -949,22 +981,32 @@ name = "huggingface-hub"
 version = "0.36.2"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "platform_machine != 's390x' and sys_platform == 'win32'",
-    "platform_machine == 's390x' and sys_platform == 'win32'",
-    "platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
 ]
 dependencies = [
-    { name = "filelock", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "fsspec", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "hf-xet", marker = "(platform_machine == 'aarch64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'amd64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'arm64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'x86_64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "packaging", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "pyyaml", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "requests", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "tqdm", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "typing-extensions", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "filelock", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "fsspec", version = "2025.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "hf-xet", marker = "(platform_machine == 'aarch64' and extra == 'extra-13-radiotalk-asr-parakeet') or (platform_machine == 'aarch64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'amd64' and extra == 'extra-13-radiotalk-asr-parakeet') or (platform_machine == 'amd64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'arm64' and extra == 'extra-13-radiotalk-asr-parakeet') or (platform_machine == 'arm64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'x86_64' and extra == 'extra-13-radiotalk-asr-parakeet') or (platform_machine == 'x86_64' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "packaging", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "pyyaml", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "requests", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "tqdm", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "typing-extensions", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/7c/b7/8cb61d2eece5fb05a83271da168186721c450eb74e3c31f7ef3169fa475b/huggingface_hub-0.36.2.tar.gz", hash = "sha256:1934304d2fb224f8afa3b87007d58501acfda9215b334eed53072dd5e815ff7a", size = 649782, upload-time = "2026-02-06T09:24:13.098Z" }
 wheels = [
@@ -976,23 +1018,20 @@ name = "huggingface-hub"
 version = "1.15.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "platform_machine != 's390x' and sys_platform == 'win32'",
-    "platform_machine == 's390x' and sys_platform == 'win32'",
-    "platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "sys_platform == 'win32'",
+    "sys_platform == 'emscripten'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "filelock", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "fsspec", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "hf-xet", marker = "(platform_machine == 'AMD64' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'aarch64' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'amd64' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'arm64' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'x86_64' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "httpx", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "packaging", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "pyyaml", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "tqdm", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "typer", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "typing-extensions", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "filelock", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "fsspec", version = "2025.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "hf-xet", marker = "(platform_machine == 'AMD64' and extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'AMD64' and extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'AMD64' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'aarch64' and extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'aarch64' and extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'aarch64' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'amd64' and extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'amd64' and extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'amd64' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'arm64' and extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'arm64' and extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'arm64' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'x86_64' and extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'x86_64' and extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (platform_machine == 'x86_64' and extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "httpx", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "packaging", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "pyyaml", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "tqdm", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "typer", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "typing-extensions", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/bb/b6/e22bd20a25299c34b8c5922c1545a6320825b13906eb0f7298edfd034a0b/huggingface_hub-1.15.0.tar.gz", hash = "sha256:28abfdddda3927fd4de6a63cf26ab012498a2c24dae52baf150c5c6edf98a1d5", size = 784100, upload-time = "2026-05-15T11:42:52.149Z" }
 wheels = [
@@ -1020,6 +1059,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/82/77/7b3966d0b9d1d31a36ddf1746926a11dface89a83409bf1483f0237aa758/idna-3.15.tar.gz", hash = "sha256:ca962446ea538f7092a95e057da437618e886f4d349216d2b1e294abfdb65fdc", size = 199245, upload-time = "2026-05-12T22:45:57.011Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d2/23/408243171aa9aaba178d3e2559159c24c1171a641aa83b67bdd3394ead8e/idna-3.15-py3-none-any.whl", hash = "sha256:048adeaf8c2d788c40fee287673ccaa74c24ffd8dcf09ffa555a2fbb59f10ac8", size = 72340, upload-time = "2026-05-12T22:45:55.733Z" },
+]
+
+[[package]]
+name = "indic-numtowords"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/aa/46/683e92580d9c1752917d2f9ec2a44d2adc21cdfe4deeaa0fe87fc23dbea8/indic_numtowords-1.1.0.tar.gz", hash = "sha256:d1addc21444c332e05bfd8726af427960c096c2a16776d98bee4fbc36ade5d25", size = 44220, upload-time = "2025-08-18T12:24:13.075Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1e/16/b2b6491d95a15bda712163b4e27428f2cb1ac3a1b4fb59b140dbc76f6ce5/indic_numtowords-1.1.0-py3-none-any.whl", hash = "sha256:bf4b7b9e539323d9b00bc868caa2d9369170b8f3ac4d19619bf9c6cdc6f89572", size = 71635, upload-time = "2025-08-18T12:24:11.065Z" },
 ]
 
 [[package]]
@@ -1052,12 +1100,12 @@ name = "ipython"
 version = "9.13.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "decorator" },
     { name = "ipython-pygments-lexers" },
     { name = "jedi" },
     { name = "matplotlib-inline" },
-    { name = "pexpect", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "pexpect", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "prompt-toolkit" },
     { name = "psutil" },
     { name = "pygments" },
@@ -1116,11 +1164,37 @@ wheels = [
 
 [[package]]
 name = "jiwer"
+version = "3.1.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "platform_machine != 's390x' and sys_platform == 'win32'",
+    "platform_machine == 's390x' and sys_platform == 'win32'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "click", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "rapidfuzz", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/3e/71b95cf0e2179fb5de8744a79fd36c8bd4e02e1803129a16d423884b6654/jiwer-3.1.0.tar.gz", hash = "sha256:dc492d09e570f1baba98c76aba09baf8e09c06e6808a4ba412dd4bde67fb79ac", size = 103187, upload-time = "2025-01-31T12:14:10.86Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ba/f4/35634d9eeff3b0bab51f5b9474ee569b1186bf29cf0d9d67b84acc80c53d/jiwer-3.1.0-py3-none-any.whl", hash = "sha256:5a14b5bba4692e1946ca3c6946435f7d90b1b526076ccb6c12be763e2146237d", size = 22303, upload-time = "2025-01-31T12:14:08.893Z" },
+]
+
+[[package]]
+name = "jiwer"
 version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "sys_platform == 'win32'",
+    "sys_platform == 'emscripten'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 dependencies = [
-    { name = "click" },
-    { name = "rapidfuzz" },
+    { name = "click", marker = "extra == 'extra-13-radiotalk-asr-cohere-asr' or extra == 'extra-13-radiotalk-asr-granite-speech' or extra != 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "rapidfuzz", marker = "extra == 'extra-13-radiotalk-asr-cohere-asr' or extra == 'extra-13-radiotalk-asr-granite-speech' or extra != 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/12/1e/963dfc249d5bbe88079b57a22556e981ddd9208e4b6116e48bdbfc01f26b/jiwer-4.0.0.tar.gz", hash = "sha256:ae9c051469102a61ef0927100baeeb4546f78d180c9b0948281d08eaf44c191e", size = 28074, upload-time = "2025-06-19T16:05:23.004Z" }
 wheels = [
@@ -1146,15 +1220,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/80/45/e3e542ffa8970ebd782fcece35e2295de9c60e8c396c2c1a403410d1b24e/kaldi-python-io-1.2.2.tar.gz", hash = "sha256:4ebb4029c6c58296cc0abf96edff02832ba341d290ed37624a8d00105f0f7c00", size = 8814, upload-time = "2021-03-18T12:02:05.832Z" }
 
 [[package]]
-name = "kaldiio"
-version = "2.18.1"
+name = "kaldialign"
+version = "0.9.1"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "numpy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/8d/85/92435e8e62eb3d43eded9f24643fc2a6dbce031cebceed11528147c7873f/kaldiio-2.18.1.tar.gz", hash = "sha256:0283d197fac6ac683f7a9e6af8d18aad9dbd2c4a997f22e45294f2ac1ee3c432", size = 35570, upload-time = "2025-03-06T15:57:52.375Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ae/e3/6c3b42233225f398f7a72988b524f654ae818cca0d441db847a2761203e9/kaldiio-2.18.1-py3-none-any.whl", hash = "sha256:397a4cd18977acaae7acabfba6807ee0a6978c620064381a266eac15b3c1a0a0", size = 29330, upload-time = "2025-03-06T15:57:50.82Z" },
+    { url = "https://files.pythonhosted.org/packages/42/99/207f45fd2b02f431c40e620cc41b3c6af8078a192482668840df52dad592/kaldialign-0.9.1-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:7112ff9f52c960825293cd3e8586094d700344c625cd4e75138408ace780402e", size = 115212, upload-time = "2024-03-17T23:16:52.041Z" },
+    { url = "https://files.pythonhosted.org/packages/f0/e4/b2c2b4dfb88677b1868ed9366ed415d93360c47615a53e189d375b986de4/kaldialign-0.9.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cdaf85389756a1caf6ad95754480768195aea30e57f4ce741b6d385a84c6efd9", size = 87336, upload-time = "2024-03-17T23:23:14.787Z" },
+    { url = "https://files.pythonhosted.org/packages/a1/25/acca269c3b9e219d4611c7f9b966e884521b61c899750343b3548bc6393b/kaldialign-0.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e9dc8455832caf4316a7674676098e4e9cc2c0f50428c7105e24c1c767bebd6e", size = 91977, upload-time = "2024-03-17T23:17:26.3Z" },
+    { url = "https://files.pythonhosted.org/packages/87/56/4a9cd8468c6a3afd32ee29059e36e9b28dab41c37e49be979def88697166/kaldialign-0.9.1-cp312-cp312-win32.whl", hash = "sha256:c28620c352ecfb016b35579c3b52a4d049aba54c1e9a448d4bef88de1a8566c8", size = 62314, upload-time = "2024-03-17T23:20:01.936Z" },
+    { url = "https://files.pythonhosted.org/packages/83/b2/aac02ff83128f8068898ad37eb0077cecad0548d1207ec0ff5f61107f8e2/kaldialign-0.9.1-cp312-cp312-win_amd64.whl", hash = "sha256:c6090ef4ebdaf95fa78b46d7eda05b7367d8d889228a67696217487d4ceb783c", size = 70822, upload-time = "2024-03-17T23:22:40.849Z" },
 ]
 
 [[package]]
@@ -1194,28 +1268,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/49/ac/21a1f8aa3777f5658576777ea76bfb124b702c520bbe90edf4ae9915eafa/lazy_loader-0.5.tar.gz", hash = "sha256:717f9179a0dbed357012ddad50a5ad3d5e4d9a0b8712680d4e687f5e6e6ed9b3", size = 15294, upload-time = "2026-03-06T15:45:09.054Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8a/a1/8d812e53a5da1687abb10445275d41a8b13adb781bbf7196ddbcf8d88505/lazy_loader-0.5-py3-none-any.whl", hash = "sha256:ab0ea149e9c554d4ffeeb21105ac60bed7f3b4fd69b1d2360a4add51b170b005", size = 8044, upload-time = "2026-03-06T15:45:07.668Z" },
-]
-
-[[package]]
-name = "levenshtein"
-version = "0.27.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "rapidfuzz" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/82/56/dcf68853b062e3b94bdc3d011cc4198779abc5b9dc134146a062920ce2e2/levenshtein-0.27.3.tar.gz", hash = "sha256:1ac326b2c84215795163d8a5af471188918b8797b4953ec87aaba22c9c1f9fc0", size = 393269, upload-time = "2025-11-01T12:14:31.04Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/7c/8e/3be9d8e0245704e3af5258fb6cb157c3d59902e1351e95edf6ed8a8c0434/levenshtein-0.27.3-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:2de7f095b0ca8e44de9de986ccba661cd0dec3511c751b499e76b60da46805e9", size = 169622, upload-time = "2025-11-01T12:13:10.026Z" },
-    { url = "https://files.pythonhosted.org/packages/a6/42/a2b2fda5e8caf6ecd5aac142f946a77574a3961e65da62c12fd7e48e5cb1/levenshtein-0.27.3-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:d9b8b29e5d5145a3c958664c85151b1bb4b26e4ca764380b947e6a96a321217c", size = 159183, upload-time = "2025-11-01T12:13:11.197Z" },
-    { url = "https://files.pythonhosted.org/packages/eb/c4/f083fabbd61c449752df1746533538f4a8629e8811931b52f66e6c4290ad/levenshtein-0.27.3-cp312-cp312-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:fc975465a51b1c5889eadee1a583b81fba46372b4b22df28973e49e8ddb8f54a", size = 133120, upload-time = "2025-11-01T12:13:12.363Z" },
-    { url = "https://files.pythonhosted.org/packages/4e/e5/b6421e04cb0629615b8efd6d4d167dd2b1afb5097b87bb83cd992004dcca/levenshtein-0.27.3-cp312-cp312-manylinux_2_24_armv7l.manylinux_2_31_armv7l.whl", hash = "sha256:57573ed885118554770979fdee584071b66103f6d50beddeabb54607a1213d81", size = 114988, upload-time = "2025-11-01T12:13:13.486Z" },
-    { url = "https://files.pythonhosted.org/packages/e5/77/39ee0e8d3028e90178e1031530ccc98563f8f2f0d905ec784669dcf0fa90/levenshtein-0.27.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:23aff800a6dd5d91bb3754a6092085aa7ad46b28e497682c155c74f681cfaa2d", size = 153346, upload-time = "2025-11-01T12:13:14.744Z" },
-    { url = "https://files.pythonhosted.org/packages/3c/0d/c0f367bbd260dbd7a4e134fd21f459e0f5eac43deac507952b46a1d8a93a/levenshtein-0.27.3-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:c08a952432b8ad9dccb145f812176db94c52cda732311ddc08d29fd3bf185b0a", size = 1114538, upload-time = "2025-11-01T12:13:15.851Z" },
-    { url = "https://files.pythonhosted.org/packages/d8/ef/ae71433f7b4db0bd2af7974785e36cdec899919203fb82e647c5a6109c07/levenshtein-0.27.3-cp312-cp312-musllinux_1_2_armv7l.whl", hash = "sha256:3bfcb2d78ab9cc06a1e75da8fcfb7a430fe513d66cfe54c07e50f32805e5e6db", size = 1009734, upload-time = "2025-11-01T12:13:17.212Z" },
-    { url = "https://files.pythonhosted.org/packages/27/dc/62c28b812dcb0953fc32ab7adf3d0e814e43c8560bb28d9269a44d874adf/levenshtein-0.27.3-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:ba7235f6dcb31a217247468295e2dd4c6c1d3ac81629dc5d355d93e1a5f4c185", size = 1185581, upload-time = "2025-11-01T12:13:18.661Z" },
-    { url = "https://files.pythonhosted.org/packages/56/e8/2e7ab9c565793220edb8e5432f9a846386a157075bdd032a90e9585bce38/levenshtein-0.27.3-cp312-cp312-win32.whl", hash = "sha256:ea80d70f1d18c161a209be556b9094968627cbaae620e102459ef9c320a98cbb", size = 84660, upload-time = "2025-11-01T12:13:19.87Z" },
-    { url = "https://files.pythonhosted.org/packages/2c/a6/907a1fc8587dc91c40156973e09d106ab064c06eb28dc4700ba0fe54d654/levenshtein-0.27.3-cp312-cp312-win_amd64.whl", hash = "sha256:fbaa1219d9b2d955339a37e684256a861e9274a3fe3a6ee1b8ea8724c3231ed9", size = 94909, upload-time = "2025-11-01T12:13:21.323Z" },
-    { url = "https://files.pythonhosted.org/packages/d5/d6/e04f0ddf6a71df3cdd1817b71703490ac874601ed460b2af172d3752c321/levenshtein-0.27.3-cp312-cp312-win_arm64.whl", hash = "sha256:2edbaa84f887ea1d9d8e4440af3fdda44769a7855d581c6248d7ee51518402a8", size = 87358, upload-time = "2025-11-01T12:13:22.393Z" },
 ]
 
 [[package]]
@@ -1288,7 +1340,7 @@ name = "lightning"
 version = "2.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "fsspec", extra = ["http"] },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" }, extra = ["http"], marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "lightning-utilities" },
     { name = "packaging" },
     { name = "pytorch-lightning" },
@@ -1329,16 +1381,28 @@ wheels = [
 ]
 
 [[package]]
-name = "loguru"
-version = "0.7.3"
+name = "lxml"
+version = "6.1.1"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "win32-setctime", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/3a/05/a1dae3dffd1116099471c643b8924f5aa6524411dc6c63fdae648c4f1aca/loguru-0.7.3.tar.gz", hash = "sha256:19480589e77d47b8d85b2c827ad95d49bf31b0dcde16593892eb51dd18706eb6", size = 63559, upload-time = "2024-12-06T11:20:56.608Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/05/3b/aab6728cae887456f409b4d75e8a01856e4f04bd510de38052a47768b680/lxml-6.1.1.tar.gz", hash = "sha256:ba96ae44888e0185281e937633a743ea90d5a196c6000f82565ebb0580012d40", size = 4197430, upload-time = "2026-05-18T19:19:06.424Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/29/0348de65b8cc732daa3e33e67806420b2ae89bdce2b04af740289c5c6c8c/loguru-0.7.3-py3-none-any.whl", hash = "sha256:31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c", size = 61595, upload-time = "2024-12-06T11:20:54.538Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/6e/c4add832b6fc1e887125b96f880d7b9b70aae5248718e046b1704bcac4b9/lxml-6.1.1-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:104c09bda8d2a562824c0e319d0768ce26a779b7601e0931d33b09b53c392ef7", size = 8570821, upload-time = "2026-05-18T19:17:42.068Z" },
+    { url = "https://files.pythonhosted.org/packages/22/00/ff3009c88e65de8011630acf8ab5a09cb2becd2aaf47fba2f3449f6224e9/lxml-6.1.1-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:25c6997a9a534e016695a0ba06b2f07945de682731ff01065b6d5a4474179da1", size = 4624252, upload-time = "2026-05-18T19:17:47.897Z" },
+    { url = "https://files.pythonhosted.org/packages/42/95/bb63f0fd62e554fe078e1fb3c8fe9083c14ddc7ad7fa178d10e57e071ac7/lxml-6.1.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:c921ba5c51e4e9f63b8b00267d06566e1f63407408a0496da2d1d0bfc819c7fc", size = 4930746, upload-time = "2026-05-18T19:18:29.637Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/99/0013e8d9b5960f4f041cf0b73e2f80c23eb5205b1f7bfb20203243651359/lxml-6.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:54a7f95e4de5fb94e2f9f4b9055c6ba33bf3d628fd77a1d647c5923caa2cdcdc", size = 5093723, upload-time = "2026-05-18T19:18:34.168Z" },
+    { url = "https://files.pythonhosted.org/packages/29/91/317b332636bfc7bddcff828d41b3307f50043f4b237e40849c333d80fa1a/lxml-6.1.1-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:96f2ec43df44b1f76249ee0a615334f9b5b060e1c8bd90e706dad2d14d02f383", size = 5005557, upload-time = "2026-05-18T19:18:39.798Z" },
+    { url = "https://files.pythonhosted.org/packages/42/2f/cc9bf06afe70f9c9093ae60855d9759da9db601ec4080f7473319666ffd7/lxml-6.1.1-cp312-cp312-manylinux_2_26_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:70ef8a7e102a1508f8121aae5b0867abd663f72c14f0a9c937e6554cb4587b7b", size = 5631036, upload-time = "2026-05-18T19:18:44.858Z" },
+    { url = "https://files.pythonhosted.org/packages/08/f6/af32e23e563971ffb0fb86be52bc5be5c2c118858ffc119bf6a9039b173d/lxml-6.1.1-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ebe6af670449830d6d9b752c256a983291c766a1365ba5d5460048f9e33a7818", size = 5240367, upload-time = "2026-05-18T19:18:49.217Z" },
+    { url = "https://files.pythonhosted.org/packages/78/83/8555d40948b09ce86f1bd0c68a7ac31d07b1929f92cc1b074006c97ef2d2/lxml-6.1.1-cp312-cp312-manylinux_2_28_i686.whl", hash = "sha256:27acc820660aaffa4f7c087f29120e12980f7779d56d8492d263170111284740", size = 5350171, upload-time = "2026-05-18T19:18:52.779Z" },
+    { url = "https://files.pythonhosted.org/packages/63/75/5d92da93729b7bad783689e6496049fa40927b45bec7bf183c981de3ca70/lxml-6.1.1-cp312-cp312-manylinux_2_31_armv7l.whl", hash = "sha256:1db753c9115ec7100d073b744d17e25e88a8f90f5c39b2f5dd878149af59671f", size = 4694874, upload-time = "2026-05-18T19:18:55.139Z" },
+    { url = "https://files.pythonhosted.org/packages/c5/b5/3aad415a9a25b822e783f15deeb4dffccf5113030f1afa2222dd929313d9/lxml-6.1.1-cp312-cp312-manylinux_2_38_riscv64.manylinux_2_39_riscv64.whl", hash = "sha256:c4f469aebd783bb741c2ecb2a681008fd26bfe5c16a9a72ed5467f834e810df2", size = 5244492, upload-time = "2026-05-18T19:19:01.28Z" },
+    { url = "https://files.pythonhosted.org/packages/f1/a1/5fcf7eb9904b80086aa47dcf0027de07b1bb990afad2e6823144c368ae04/lxml-6.1.1-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:766b010012d59470072c1816b5b6c69f1d243e5db36ea5968e94accf430a4635", size = 5048232, upload-time = "2026-05-18T19:18:12.67Z" },
+    { url = "https://files.pythonhosted.org/packages/77/74/1f601b63c7a69fcdf10fa9b148c81da8442204194f6c55509cc485c786b9/lxml-6.1.1-cp312-cp312-musllinux_1_2_armv7l.whl", hash = "sha256:b8d812c6011c08b8111a15e54dd990b8923692d80adf35488bee34026c35accf", size = 4777023, upload-time = "2026-05-18T19:18:15.928Z" },
+    { url = "https://files.pythonhosted.org/packages/a2/b9/7a78f51aec95b1bf780d78e12705a9f6533284f8693dc5c0e6724fa53d3f/lxml-6.1.1-cp312-cp312-musllinux_1_2_ppc64le.whl", hash = "sha256:fe0306bd29505a9177aac19f1877174b0e7422c222a59f70b2cd41633448c3dc", size = 5645773, upload-time = "2026-05-18T19:18:23.223Z" },
+    { url = "https://files.pythonhosted.org/packages/a5/6e/98a7b7ad54e4e74fa1f20fff776913980619d0ebe5558232d7da6580bdd8/lxml-6.1.1-cp312-cp312-musllinux_1_2_riscv64.whl", hash = "sha256:5ba186ad207446c65d3bb3d3e0412b032b1d9f595e59861e2354798c5703d955", size = 5233088, upload-time = "2026-05-18T19:18:31.433Z" },
+    { url = "https://files.pythonhosted.org/packages/65/d1/bc0ed2427bf609f2ee10da303a6a226f9c8bce94f945dc29a32ce55de6e4/lxml-6.1.1-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:aa366a1e55b8ebfe8ca8ddc3cfe75c8ebade181aeb0f661d0cb05986b647f72a", size = 5260995, upload-time = "2026-05-18T19:18:37.091Z" },
+    { url = "https://files.pythonhosted.org/packages/69/8b/6772e1a4b513fc50a8d931f19edde0e13ae6918510a1e13ff67864f3e5ed/lxml-6.1.1-cp312-cp312-win32.whl", hash = "sha256:126c93f7f56f0eda92f6d8c619edc463a4f23d9252f1c9d0405a76f25fa9f11a", size = 3596382, upload-time = "2026-05-18T19:17:18.37Z" },
+    { url = "https://files.pythonhosted.org/packages/1b/89/45198e9624762af2dfd2cb8782598477ceb29f6e59caab560388ae1f4ec1/lxml-6.1.1-cp312-cp312-win_amd64.whl", hash = "sha256:26e6eda8d38c1fcab1090dd196ee87cbd13788e531937610e2589085de074e77", size = 3997255, upload-time = "2026-05-18T19:17:56.781Z" },
 ]
 
 [[package]]
@@ -1581,14 +1645,17 @@ wheels = [
 
 [[package]]
 name = "nemo-toolkit"
-version = "2.1.0"
+version = "2.7.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "numba" },
+    { name = "cuda-bindings", marker = "sys_platform != 'darwin'" },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" } },
+    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numba", marker = "sys_platform == 'darwin'" },
+    { name = "numexpr" },
     { name = "numpy" },
     { name = "onnx" },
+    { name = "protobuf" },
     { name = "python-dateutil" },
     { name = "ruamel-yaml" },
     { name = "scikit-learn" },
@@ -1600,9 +1667,9 @@ dependencies = [
     { name = "wget" },
     { name = "wrapt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/60/78/dbaa7f8a22bce943b5f3bda226d3d6b2094068b4a182c9a901ec71fd3421/nemo_toolkit-2.1.0.tar.gz", hash = "sha256:3f14d060919ae76a1d86a2f1b757cd69757e322a91b36cf177fc7ea98b021370", size = 3755513, upload-time = "2025-01-03T09:43:35.275Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e2/30/c385006f44cf6267592c38e16e9d84aa4770a39d55f347d9d8fcc6ee1df5/nemo_toolkit-2.7.3.tar.gz", hash = "sha256:083240dd24b7534eeb6da5b3bc88fa930da625b2a6a8c071c23fb16919783224", size = 4262615, upload-time = "2026-04-23T17:39:32.044Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/06/50/6384fc179201e8c710d4a353f177063c31e2bf393a4c55008bf84013d127/nemo_toolkit-2.1.0-py3-none-any.whl", hash = "sha256:3f16ca1801e362d849b3e9f15f4478c43aa19607c3fbaddc69018d4a1f514c57", size = 5094598, upload-time = "2025-01-03T09:43:30.67Z" },
+    { url = "https://files.pythonhosted.org/packages/40/8b/44dc1ec481301b9d0c1b262552d629a175d31f546ec5c6491ec697c4a9b5/nemo_toolkit-2.7.3-py3-none-any.whl", hash = "sha256:8cbeb10263d71262c47cd4797c4cdb2603d2d2f4b7f03c77c8062e268fb80ecb", size = 6025905, upload-time = "2026-04-23T17:39:29.127Z" },
 ]
 
 [package.optional-dependencies]
@@ -1613,38 +1680,41 @@ asr = [
     { name = "editdistance" },
     { name = "einops" },
     { name = "fiddle" },
-    { name = "g2p-en" },
     { name = "hydra-core" },
     { name = "inflect" },
-    { name = "jiwer" },
+    { name = "jiwer", version = "3.1.0", source = { registry = "https://pypi.org/simple" } },
     { name = "kaldi-python-io" },
-    { name = "kaldiio" },
+    { name = "kaldialign" },
     { name = "lhotse" },
     { name = "librosa" },
     { name = "lightning" },
     { name = "marshmallow" },
     { name = "mediapy" },
+    { name = "nv-one-logger-core" },
+    { name = "nv-one-logger-pytorch-lightning-integration" },
+    { name = "nv-one-logger-training-telemetry" },
     { name = "omegaconf" },
     { name = "optuna" },
     { name = "packaging" },
     { name = "pandas" },
+    { name = "peft" },
     { name = "pyannote-core" },
     { name = "pyannote-metrics" },
     { name = "pydub" },
     { name = "pyloudnorm" },
     { name = "resampy" },
     { name = "ruamel-yaml" },
+    { name = "sacrebleu" },
     { name = "sacremoses" },
     { name = "scipy" },
     { name = "sentencepiece" },
     { name = "soundfile" },
     { name = "sox" },
-    { name = "texterrors" },
     { name = "torchmetrics" },
-    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" } },
     { name = "wandb" },
     { name = "webdataset" },
+    { name = "whisper-normalizer" },
 ]
 
 [[package]]
@@ -1654,21 +1724,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/6a/51/63fe664f3908c97be9d2e4f1158eb633317598cfa6e1fc14af5383f17512/networkx-3.6.1.tar.gz", hash = "sha256:26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509", size = 2517025, upload-time = "2025-12-08T17:02:39.908Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl", hash = "sha256:d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762", size = 2068504, upload-time = "2025-12-08T17:02:38.159Z" },
-]
-
-[[package]]
-name = "nltk"
-version = "3.9.4"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "click" },
-    { name = "joblib" },
-    { name = "regex" },
-    { name = "tqdm" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/74/a1/b3b4adf15585a5bc4c357adde150c01ebeeb642173ded4d871e89468767c/nltk-3.9.4.tar.gz", hash = "sha256:ed03bc098a40481310320808b2db712d95d13ca65b27372f8a403949c8b523d0", size = 2946864, upload-time = "2026-03-24T06:13:40.641Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/9d/91/04e965f8e717ba0ab4bdca5c112deeab11c9e750d94c4d4602f050295d39/nltk-3.9.4-py3-none-any.whl", hash = "sha256:f2fa301c3a12718ce4a0e9305c5675299da5ad9e26068218b69d692fda84828f", size = 1552087, upload-time = "2026-03-24T06:13:38.47Z" },
 ]
 
 [[package]]
@@ -1700,6 +1755,25 @@ wheels = [
 ]
 
 [[package]]
+name = "numexpr"
+version = "2.13.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8d/ca/c1217ae2c15c3284a9e219c269624f80fa1582622eb0400c711a26f84a43/numexpr-2.13.1.tar.gz", hash = "sha256:ecb722249c2d6ed7fefe8504bb17e056481a5f31233c23a7ee02085c3d661fa1", size = 119296, upload-time = "2025-09-30T18:36:33.551Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b5/24/b87ad61f09132d92d92e93da8940055f1282ee30c913737ae977cebebab6/numexpr-2.13.1-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:6aa48c2f2bfa142dfe260441486452be8f70b5551c17bc846fccf76123d4a226", size = 162534, upload-time = "2025-09-30T18:35:33.361Z" },
+    { url = "https://files.pythonhosted.org/packages/91/b8/8ea90b2c64ef26b14866a38d13bb496195856b810c1a18a96cb89693b6af/numexpr-2.13.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:67a3dd8b51e94251f535a9a404f1ac939a3ebeb9398caad20ae9d0de37c6d3b3", size = 151938, upload-time = "2025-09-30T18:35:34.608Z" },
+    { url = "https://files.pythonhosted.org/packages/ab/65/4679408c4c61badbd12671920479918e2893c8488de8d5c7f801b3a5f57d/numexpr-2.13.1-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:ca152998d44ea30b45ad6b8a050ac4a9408b61a17508df87ad0d919335d79b44", size = 452166, upload-time = "2025-09-30T18:35:36.643Z" },
+    { url = "https://files.pythonhosted.org/packages/31/1b/11a1202f8b67dce8e119a9f6481d839b152cc0084940a146b52f8f38685b/numexpr-2.13.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b4280c8f7cc024846be8fdd6582572bb0b6bad98fb2a68a367ef5e6e2e130d5f", size = 443123, upload-time = "2025-09-30T18:35:38.14Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/5e/271bf56efac177abe6e5d5349365e460a2a4205a514c99e0b2203d827264/numexpr-2.13.1-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:b86e1daa4e27d6bf6304008ed4630a055babf863db2ec8f282b4058bbfe466bd", size = 1417039, upload-time = "2025-09-30T18:35:39.832Z" },
+    { url = "https://files.pythonhosted.org/packages/72/33/6b3164fdc553eceec901793f9df467a7b4151e21772514fc2a392f12c42f/numexpr-2.13.1-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:30d189fc52ee4a33b869a0592553cd2ed686c20cded21b2ddf347a4d143f1bea", size = 1465878, upload-time = "2025-09-30T18:35:41.437Z" },
+    { url = "https://files.pythonhosted.org/packages/f1/3e/037e9dc96f9681e7af694bf5abf699b137f1fccb8bb829c50505e98d60ba/numexpr-2.13.1-cp312-cp312-win32.whl", hash = "sha256:e926b59d385de2396935b362143ac2c282176875cf8ee7baba0a150b58421b5c", size = 166740, upload-time = "2025-09-30T18:35:42.851Z" },
+    { url = "https://files.pythonhosted.org/packages/b6/7e/92c01806608a3d1c88aabbda42e4849036200a5209af374bfa5c614aa5e5/numexpr-2.13.1-cp312-cp312-win_amd64.whl", hash = "sha256:8230a8f7cd4e6ba4022643c85e119aa4ca90412267ef20acdf1f54fb3136680d", size = 159987, upload-time = "2025-09-30T18:35:43.923Z" },
+]
+
+[[package]]
 name = "numpy"
 version = "2.4.5"
 source = { registry = "https://pypi.org/simple" }
@@ -1719,11 +1793,57 @@ wheels = [
 ]
 
 [[package]]
+name = "nv-one-logger-core"
+version = "2.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "overrides" },
+    { name = "pydantic" },
+    { name = "strenum" },
+    { name = "toml" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3b/37/963095797035f371e0db6ea761f5aaccb624fc786af217115b423baeb0e2/nv_one_logger_core-2.3.1.tar.gz", hash = "sha256:cbb2f87604c78b96a302f32d87199902129d76153a73a20f8455a250b3246c1d", size = 52640, upload-time = "2025-10-29T21:11:55.812Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ee/c4/ea91554c4fcbff66057f667690101d7a4b965605741350ac661b03fa6c46/nv_one_logger_core-2.3.1-py3-none-any.whl", hash = "sha256:0c8b77bcdac4daa1ea913bf8d4afd2a057bd5526e3654ac39f67caba157341a6", size = 63066, upload-time = "2025-10-29T21:11:52.753Z" },
+]
+
+[[package]]
+name = "nv-one-logger-pytorch-lightning-integration"
+version = "2.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "lightning" },
+    { name = "nv-one-logger-core" },
+    { name = "nv-one-logger-training-telemetry" },
+    { name = "setuptools" },
+    { name = "strenum" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0c/d0/3475b7ab17d367362f650fb0419e8669f41e63c1018f4a8ac2fbecfd2e85/nv_one_logger_pytorch_lightning_integration-2.3.1.tar.gz", hash = "sha256:b32d99b6a8f02a16538bcade939b0a7edd7249e936aacefe336b5519447340c3", size = 10979, upload-time = "2025-10-29T21:22:10.464Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f0/56/01a55efb365b6864646b4ac941a1d9de66f024e880764510ba5a7a63f62c/nv_one_logger_pytorch_lightning_integration-2.3.1-py3-none-any.whl", hash = "sha256:f92904055fb0082516480cc1e3dd0bb6cedb2b033985ebfd4814b9cbf7da2cb2", size = 9822, upload-time = "2025-10-29T21:22:09.37Z" },
+]
+
+[[package]]
+name = "nv-one-logger-training-telemetry"
+version = "2.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "nv-one-logger-core" },
+    { name = "strenum" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c5/21/016fa067967734d52f1ccf5a2a37a1a65216f2d7053bc2b85872cce956ca/nv_one_logger_training_telemetry-2.3.1.tar.gz", hash = "sha256:8c67940ea71799afaf1f46df3ba2f52f93aea26321c6f1c1d54aae02efc2a4af", size = 44435, upload-time = "2025-10-29T21:21:42.035Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e5/15/97e6e4ddfe5fc35bcee74a45b7c33fb73abb83713c7dfa26420b971a86c3/nv_one_logger_training_telemetry-2.3.1-py3-none-any.whl", hash = "sha256:5319443829b59378a498c3c62ac98973e14f31be675c229ff2b14e2fe109aa0b", size = 44140, upload-time = "2025-10-29T21:21:40.72Z" },
+]
+
+[[package]]
 name = "nvidia-cublas"
 version = "13.1.1.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cuda-nvrtc", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cuda-nvrtc", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a7/a1/0bd24ee8c8d03adac032fd2909426a00c88f8c57961b1277ded97f91119f/nvidia_cublas-13.1.1.3-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:b7a210458267ac818974c53038fbec2e969d5c99f305ab15c72522fa9f001dd5", size = 542848918, upload-time = "2026-04-08T18:46:22.985Z" },
@@ -1766,7 +1886,7 @@ name = "nvidia-cudnn-cu13"
 version = "9.20.0.48"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cublas", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/56/c5/83384d846b2fd17c44bd499b36c75a45ed4f095fbbb2252294e89cea5c5c/nvidia_cudnn_cu13-9.20.0.48-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:e31454ae00094b0c55319d9d15b6fa2fc50a9e1c0f5c8c80fb75258234e731e1", size = 444574296, upload-time = "2026-03-09T19:28:27.751Z" },
@@ -1779,7 +1899,7 @@ name = "nvidia-cufft"
 version = "12.0.0.61"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8b/ae/f417a75c0259e85c1d2f83ca4e960289a5f814ed0cea74d18c353d3e989d/nvidia_cufft-12.0.0.61-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:2708c852ef8cd89d1d2068bdbece0aa188813a0c934db3779b9b1faa8442e5f5", size = 214053554, upload-time = "2025-09-04T08:31:38.196Z" },
@@ -1811,9 +1931,9 @@ name = "nvidia-cusolver"
 version = "12.0.4.66"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "nvidia-cusparse", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cublas", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cusparse", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c8/c3/b30c9e935fc01e3da443ec0116ed1b2a009bb867f5324d3f2d7e533e776b/nvidia_cusolver-12.0.4.66-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:02c2457eaa9e39de20f880f4bd8820e6a1cfb9f9a34f820eb12a155aa5bc92d2", size = 223467760, upload-time = "2025-09-04T08:33:04.222Z" },
@@ -1826,7 +1946,7 @@ name = "nvidia-cusparse"
 version = "12.6.3.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-cohere-asr') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-granite-speech') or (sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f8/94/5c26f33738ae35276672f12615a64bd008ed5be6d1ebcb23579285d960a9/nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:80bcc4662f23f1054ee334a15c72b8940402975e0eab63178fc7e670aa59472c", size = 162155568, upload-time = "2025-09-04T08:33:42.864Z" },
@@ -1957,6 +2077,15 @@ wheels = [
 ]
 
 [[package]]
+name = "overrides"
+version = "7.7.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/36/86/b585f53236dec60aba864e050778b25045f857e17f6e5ea0ae95fe80edd2/overrides-7.7.0.tar.gz", hash = "sha256:55158fa3d93b98cc75299b1e67078ad9003ca27945c76162c1c0766d6f91820a", size = 22812, upload-time = "2024-01-27T21:01:33.423Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2c/ab/fc8290c6a4c722e5514d80f62b2dc4c4df1a68a41d1364e625c35990fcf3/overrides-7.7.0-py3-none-any.whl", hash = "sha256:c7ed9d062f78b8e4c1a7b70bd8796b35ead4d9f510227ef9c5dc7626c60d7e49", size = 17832, upload-time = "2024-01-27T21:01:31.393Z" },
+]
+
+[[package]]
 name = "packaging"
 version = "24.2"
 source = { registry = "https://pypi.org/simple" }
@@ -1972,7 +2101,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
     { name = "python-dateutil" },
-    { name = "tzdata", marker = "sys_platform == 'emscripten' or sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "tzdata", marker = "sys_platform == 'emscripten' or sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/f8/87/4341c6252d1c47b08768c3d25ac487362bf403f0313ddae4a2a26c9b1b4c/pandas-3.0.3.tar.gz", hash = "sha256:696a4a00a2a2a35d4e5deb3fc946641b96c944f02230e4f76137fe35d806c4fc", size = 4651414, upload-time = "2026-05-11T18:54:29.21Z" }
 wheels = [
@@ -2001,8 +2130,8 @@ version = "0.19.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "accelerate" },
-    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
     { name = "numpy" },
     { name = "packaging" },
     { name = "psutil" },
@@ -2010,8 +2139,8 @@ dependencies = [
     { name = "safetensors" },
     { name = "torch" },
     { name = "tqdm" },
-    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/86/cf/037f1e3d5186496c05513a6754639e2dab3038a05f384284d49a9bd06a2d/peft-0.19.1.tar.gz", hash = "sha256:0d97542fe96dcdaa20d3b81c06f26f988618f416a73544ab23c3618ccb674a40", size = 763738, upload-time = "2026-04-16T15:46:45.105Z" }
 wheels = [
@@ -2023,7 +2152,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "(sys_platform != 'emscripten' and sys_platform != 'win32') or (sys_platform == 'emscripten' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (sys_platform == 'win32' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "ptyprocess", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
@@ -2073,6 +2202,18 @@ wheels = [
 ]
 
 [[package]]
+name = "portalocker"
+version = "3.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pywin32", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5e/77/65b857a69ed876e1951e88aaba60f5ce6120c33703f7cb61a3c894b8c1b6/portalocker-3.2.0.tar.gz", hash = "sha256:1f3002956a54a8c3730586c5c77bf18fae4149e07eaf1c29fc3faf4d5a3f89ac", size = 95644, upload-time = "2025-06-14T13:20:40.03Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4b/a6/38c8e2f318bf67d338f4d629e93b0b4b9af331f455f0390ea8ce4a099b26/portalocker-3.2.0-py3-none-any.whl", hash = "sha256:3cdc5f565312224bc570c49337bd21428bba0ef363bbcf58b9ef4a9f11779968", size = 22424, upload-time = "2025-06-14T13:20:38.083Z" },
+]
+
+[[package]]
 name = "prompt-toolkit"
 version = "3.0.52"
 source = { registry = "https://pypi.org/simple" }
@@ -2112,17 +2253,16 @@ wheels = [
 
 [[package]]
 name = "protobuf"
-version = "7.34.1"
+version = "5.29.6"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6b/6b/a0e95cad1ad7cc3f2c6821fcab91671bd5b78bd42afb357bb4765f29bc41/protobuf-7.34.1.tar.gz", hash = "sha256:9ce42245e704cc5027be797c1db1eb93184d44d1cdd71811fb2d9b25ad541280", size = 454708, upload-time = "2026-03-20T17:34:47.036Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/57/394a763c103e0edf87f0938dafcd918d53b4c011dfc5c8ae80f3b0452dbb/protobuf-5.29.6.tar.gz", hash = "sha256:da9ee6a5424b6b30fd5e45c5ea663aef540ca95f9ad99d1e887e819cdf9b8723", size = 425623, upload-time = "2026-02-04T22:54:40.584Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ec/11/3325d41e6ee15bf1125654301211247b042563bcc898784351252549a8ad/protobuf-7.34.1-cp310-abi3-macosx_10_9_universal2.whl", hash = "sha256:d8b2cc79c4d8f62b293ad9b11ec3aebce9af481fa73e64556969f7345ebf9fc7", size = 429247, upload-time = "2026-03-20T17:34:37.024Z" },
-    { url = "https://files.pythonhosted.org/packages/eb/9d/aa69df2724ff63efa6f72307b483ce0827f4347cc6d6df24b59e26659fef/protobuf-7.34.1-cp310-abi3-manylinux2014_aarch64.whl", hash = "sha256:5185e0e948d07abe94bb76ec9b8416b604cfe5da6f871d67aad30cbf24c3110b", size = 325753, upload-time = "2026-03-20T17:34:38.751Z" },
-    { url = "https://files.pythonhosted.org/packages/92/e8/d174c91fd48e50101943f042b09af9029064810b734e4160bbe282fa1caa/protobuf-7.34.1-cp310-abi3-manylinux2014_s390x.whl", hash = "sha256:403b093a6e28a960372b44e5eb081775c9b056e816a8029c61231743d63f881a", size = 340198, upload-time = "2026-03-20T17:34:39.871Z" },
-    { url = "https://files.pythonhosted.org/packages/53/1b/3b431694a4dc6d37b9f653f0c64b0a0d9ec074ee810710c0c3da21d67ba7/protobuf-7.34.1-cp310-abi3-manylinux2014_x86_64.whl", hash = "sha256:8ff40ce8cd688f7265326b38d5a1bed9bfdf5e6723d49961432f83e21d5713e4", size = 324267, upload-time = "2026-03-20T17:34:41.1Z" },
-    { url = "https://files.pythonhosted.org/packages/85/29/64de04a0ac142fb685fd09999bc3d337943fb386f3a0ec57f92fd8203f97/protobuf-7.34.1-cp310-abi3-win32.whl", hash = "sha256:34b84ce27680df7cca9f231043ada0daa55d0c44a2ddfaa58ec1d0d89d8bf60a", size = 426628, upload-time = "2026-03-20T17:34:42.536Z" },
-    { url = "https://files.pythonhosted.org/packages/4d/87/cb5e585192a22b8bd457df5a2c16a75ea0db9674c3a0a39fc9347d84e075/protobuf-7.34.1-cp310-abi3-win_amd64.whl", hash = "sha256:e97b55646e6ce5cbb0954a8c28cd39a5869b59090dfaa7df4598a7fba869468c", size = 437901, upload-time = "2026-03-20T17:34:44.112Z" },
-    { url = "https://files.pythonhosted.org/packages/88/95/608f665226bca68b736b79e457fded9a2a38c4f4379a4a7614303d9db3bc/protobuf-7.34.1-py3-none-any.whl", hash = "sha256:bb3812cd53aefea2b028ef42bd780f5b96407247f20c6ef7c679807e9d188f11", size = 170715, upload-time = "2026-03-20T17:34:45.384Z" },
+    { url = "https://files.pythonhosted.org/packages/d4/88/9ee58ff7863c479d6f8346686d4636dd4c415b0cbeed7a6a7d0617639c2a/protobuf-5.29.6-cp310-abi3-win32.whl", hash = "sha256:62e8a3114992c7c647bce37dcc93647575fc52d50e48de30c6fcb28a6a291eb1", size = 423357, upload-time = "2026-02-04T22:54:25.805Z" },
+    { url = "https://files.pythonhosted.org/packages/1c/66/2dc736a4d576847134fb6d80bd995c569b13cdc7b815d669050bf0ce2d2c/protobuf-5.29.6-cp310-abi3-win_amd64.whl", hash = "sha256:7e6ad413275be172f67fdee0f43484b6de5a904cc1c3ea9804cb6fe2ff366eda", size = 435175, upload-time = "2026-02-04T22:54:28.592Z" },
+    { url = "https://files.pythonhosted.org/packages/06/db/49b05966fd208ae3f44dcd33837b6243b4915c57561d730a43f881f24dea/protobuf-5.29.6-cp38-abi3-macosx_10_9_universal2.whl", hash = "sha256:b5a169e664b4057183a34bdc424540e86eea47560f3c123a0d64de4e137f9269", size = 418619, upload-time = "2026-02-04T22:54:30.266Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/d7/48cbf6b0c3c39761e47a99cb483405f0fde2be22cf00d71ef316ce52b458/protobuf-5.29.6-cp38-abi3-manylinux2014_aarch64.whl", hash = "sha256:a8866b2cff111f0f863c1b3b9e7572dc7eaea23a7fae27f6fc613304046483e6", size = 320284, upload-time = "2026-02-04T22:54:31.782Z" },
+    { url = "https://files.pythonhosted.org/packages/e3/dd/cadd6ec43069247d91f6345fa7a0d2858bef6af366dbd7ba8f05d2c77d3b/protobuf-5.29.6-cp38-abi3-manylinux2014_x86_64.whl", hash = "sha256:e3387f44798ac1106af0233c04fb8abf543772ff241169946f698b3a9a3d3ab9", size = 320478, upload-time = "2026-02-04T22:54:32.909Z" },
+    { url = "https://files.pythonhosted.org/packages/5a/cb/e3065b447186cb70aa65acc70c86baf482d82bf75625bf5a2c4f6919c6a3/protobuf-5.29.6-py3-none-any.whl", hash = "sha256:6b9edb641441b2da9fa8f428760fc136a49cf97a52076010cf22a2ff73438a86", size = 173126, upload-time = "2026-02-04T22:54:39.462Z" },
 ]
 
 [[package]]
@@ -2339,7 +2479,7 @@ name = "pytorch-lightning"
 version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "fsspec", extra = ["http"] },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" }, extra = ["http"], marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "lightning-utilities" },
     { name = "packaging" },
     { name = "pyyaml" },
@@ -2360,6 +2500,16 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ff/46/dd499ec9038423421951e4fad73051febaa13d2df82b4064f87af8b8c0c3/pytz-2026.2.tar.gz", hash = "sha256:0e60b47b29f21574376f218fe21abc009894a2321ea16c6754f3cad6eb7cdd6a", size = 320861, upload-time = "2026-05-04T01:35:29.667Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ec/dd/96da98f892250475bdf2328112d7468abdd4acc7b902b6af23f4ed958ea0/pytz-2026.2-py2.py3-none-any.whl", hash = "sha256:04156e608bee23d3792fd45c94ae47fae1036688e75032eea2e3bf0323d1f126", size = 510141, upload-time = "2026-05-04T01:35:27.408Z" },
+]
+
+[[package]]
+name = "pywin32"
+version = "311"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e7/ab/01ea1943d4eba0f850c3c61e78e8dd59757ff815ff3ccd0a84de5f541f42/pywin32-311-cp312-cp312-win32.whl", hash = "sha256:750ec6e621af2b948540032557b10a2d43b0cee2ae9758c54154d711cc852d31", size = 8706543, upload-time = "2025-07-14T20:13:20.765Z" },
+    { url = "https://files.pythonhosted.org/packages/d1/a8/a0e8d07d4d051ec7502cd58b291ec98dcc0c3fff027caad0470b72cfcc2f/pywin32-311-cp312-cp312-win_amd64.whl", hash = "sha256:b8c095edad5c211ff31c05223658e71bf7116daa0ecf3ad85f3201ea3190d067", size = 9495040, upload-time = "2025-07-14T20:13:22.543Z" },
+    { url = "https://files.pythonhosted.org/packages/ba/3a/2ae996277b4b50f17d61f0603efd8253cb2d79cc7ae159468007b586396d/pywin32-311-cp312-cp312-win_arm64.whl", hash = "sha256:e286f46a9a39c4a18b319c28f59b61de793654af2f395c102b4f819e584b5852", size = 8710102, upload-time = "2025-07-14T20:13:24.682Z" },
 ]
 
 [[package]]
@@ -2479,7 +2629,8 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "datasets" },
-    { name = "jiwer" },
+    { name = "jiwer", version = "3.1.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "jiwer", version = "4.0.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-cohere-asr' or extra == 'extra-13-radiotalk-asr-granite-speech' or extra != 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "numpy" },
     { name = "pydantic" },
     { name = "radiotalk" },
@@ -2494,17 +2645,17 @@ cohere-asr = [
     { name = "librosa" },
     { name = "sentencepiece" },
     { name = "torch" },
-    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
 ]
 granite-speech = [
     { name = "peft" },
     { name = "torch" },
-    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "transformers", version = "4.57.6", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "transformers", version = "5.8.1", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
 ]
 parakeet = [
-    { name = "nemo-toolkit", extra = ["asr"] },
+    { name = "nemo-toolkit", extra = ["asr"], marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 qwen-asr = [
     { name = "qwen-asr" },
@@ -2520,9 +2671,9 @@ whisper = [
 requires-dist = [
     { name = "accelerate", marker = "extra == 'cohere-asr'", specifier = ">=1.12.0" },
     { name = "datasets", specifier = ">=4.8.5" },
-    { name = "jiwer", specifier = ">=4.0.0" },
+    { name = "jiwer", specifier = ">=3.1.0" },
     { name = "librosa", marker = "extra == 'cohere-asr'", specifier = ">=0.11.0" },
-    { name = "nemo-toolkit", extras = ["asr"], marker = "extra == 'parakeet'", specifier = ">=2.1.0" },
+    { name = "nemo-toolkit", extras = ["asr"], marker = "extra == 'parakeet'", specifier = ">=2.7" },
     { name = "numpy", specifier = ">=2.4.5" },
     { name = "peft", marker = "extra == 'granite-speech'", specifier = ">=0.19.1" },
     { name = "pydantic", specifier = ">=2.13.4" },
@@ -2634,6 +2785,23 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/c7/3b/ebda527b56beb90cb7652cb1c7e4f91f48649fbcd8d2eb2fb6e77cd3329b/ruamel_yaml-0.19.1.tar.gz", hash = "sha256:53eb66cd27849eff968ebf8f0bf61f46cdac2da1d1f3576dd4ccee9b25c31993", size = 142709, upload-time = "2026-01-02T16:50:31.84Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b8/0c/51f6841f1d84f404f92463fc2b1ba0da357ca1e3db6b7fbda26956c3b82a/ruamel_yaml-0.19.1-py3-none-any.whl", hash = "sha256:27592957fedf6e0b62f281e96effd28043345e0e66001f97683aa9a40c667c93", size = 118102, upload-time = "2026-01-02T16:50:29.201Z" },
+]
+
+[[package]]
+name = "sacrebleu"
+version = "2.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama" },
+    { name = "lxml" },
+    { name = "numpy" },
+    { name = "portalocker" },
+    { name = "regex" },
+    { name = "tabulate" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d3/ed/d7acddcff74d690c56fe26a1f7828bdde548262828d0743414ea916c40c1/sacrebleu-2.6.0.tar.gz", hash = "sha256:91499b6cd46138d95154fff1e863c2f9be57e82f0c719d8dd718d0006cf6c566", size = 1893419, upload-time = "2026-01-12T17:17:20.799Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/06/f2/6c90ccf3ad1d09a7d662a405b274f3c93b92df59c8d6a025d26aaf34d302/sacrebleu-2.6.0-py3-none-any.whl", hash = "sha256:3edc1531575cfe4ad04ce53491a9307e234af1c3f805a1f491cbec844229a8a8", size = 100785, upload-time = "2026-01-12T17:17:18.868Z" },
 ]
 
 [[package]]
@@ -2874,7 +3042,7 @@ name = "sqlalchemy"
 version = "2.0.49"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "greenlet", marker = "platform_machine == 'AMD64' or platform_machine == 'WIN32' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'ppc64le' or platform_machine == 'win32' or platform_machine == 'x86_64' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "greenlet", marker = "platform_machine == 'AMD64' or platform_machine == 'WIN32' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'ppc64le' or platform_machine == 'win32' or platform_machine == 'x86_64'" },
     { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/09/45/461788f35e0364a8da7bda51a1fe1b09762d0c32f12f63727998d85a873b/sqlalchemy-2.0.49.tar.gz", hash = "sha256:d15950a57a210e36dd4cec1aac22787e2a4d57ba9318233e2ef8b2daf9ff2d5f", size = 9898221, upload-time = "2026-04-03T16:38:11.704Z" }
@@ -2914,6 +3082,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/81/69/17425771797c36cded50b7fe44e850315d039f28b15901ab44839e70b593/starlette-1.0.0.tar.gz", hash = "sha256:6a4beaf1f81bb472fd19ea9b918b50dc3a77a6f2e190a12954b25e6ed5eea149", size = 2655289, upload-time = "2026-03-22T18:29:46.779Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0b/c9/584bc9651441b4ba60cc4d557d8a547b5aff901af35bda3a4ee30c819b82/starlette-1.0.0-py3-none-any.whl", hash = "sha256:d3ec55e0bb321692d275455ddfd3df75fff145d009685eb40dc91fc66b03d38b", size = 72651, upload-time = "2026-03-22T18:29:45.111Z" },
+]
+
+[[package]]
+name = "strenum"
+version = "0.4.15"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/85/ad/430fb60d90e1d112a62ff57bdd1f286ec73a2a0331272febfddd21f330e1/StrEnum-0.4.15.tar.gz", hash = "sha256:878fb5ab705442070e4dd1929bb5e2249511c0bcf2b0eeacf3bcd80875c82eff", size = 23384, upload-time = "2023-06-29T22:02:58.399Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/81/69/297302c5f5f59c862faa31e6cb9a4cd74721cd1e052b38e464c5b402df8b/StrEnum-0.4.15-py3-none-any.whl", hash = "sha256:a30cda4af7cc6b5bf52c8055bc4bf4b2b6b14a93b574626da33df53cf7740659", size = 8851, upload-time = "2023-06-29T22:02:56.947Z" },
 ]
 
 [[package]]
@@ -2968,45 +3145,12 @@ wheels = [
 ]
 
 [[package]]
-name = "termcolor"
-version = "3.3.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/46/79/cf31d7a93a8fdc6aa0fbb665be84426a8c5a557d9240b6239e9e11e35fc5/termcolor-3.3.0.tar.gz", hash = "sha256:348871ca648ec6a9a983a13ab626c0acce02f515b9e1983332b17af7979521c5", size = 14434, upload-time = "2025-12-29T12:55:21.882Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl", hash = "sha256:cf642efadaf0a8ebbbf4bc7a31cec2f9b5f21a9f726f4ccbb08192c9c26f43a5", size = 7734, upload-time = "2025-12-29T12:55:20.718Z" },
-]
-
-[[package]]
 name = "text-unidecode"
 version = "1.3"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ab/e2/e9a00f0ccb71718418230718b3d900e71a5d16e701a3dae079a21e9cd8f8/text-unidecode-1.3.tar.gz", hash = "sha256:bad6603bb14d279193107714b288be206cac565dfa49aa5b105294dd5c4aab93", size = 76885, upload-time = "2019-08-30T21:36:45.405Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a6/a5/c0b6468d3824fe3fde30dbb5e1f687b291608f9473681bbf7dabbf5a87d7/text_unidecode-1.3-py2.py3-none-any.whl", hash = "sha256:1311f10e8b895935241623731c2ba64f4c455287888b18189350b67134a822e8", size = 78154, upload-time = "2019-08-30T21:37:03.543Z" },
-]
-
-[[package]]
-name = "texterrors"
-version = "1.1.6"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "levenshtein" },
-    { name = "loguru" },
-    { name = "numpy" },
-    { name = "regex" },
-    { name = "termcolor" },
-    { name = "typer" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/dc/d4/a24df6d8d60dbc3b6980438f16f3508698168c64d37648b2b1b164f3a4a2/texterrors-1.1.6.tar.gz", hash = "sha256:3442692abac0a174862359b23caf731ecfc286023fd6e24a280192e8c7374d12", size = 873129, upload-time = "2026-04-05T19:54:32.721Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/74/cc/d9d8458d544d15bd147d9c744a938f2bdb6e2dca6ccb684c45746e47af6a/texterrors-1.1.6-cp312-cp312-macosx_10_14_x86_64.whl", hash = "sha256:1815de5974f658c50473eb02c1ba0357e7cab0c1ebfd1f9e4100bf4131c881d9", size = 574931, upload-time = "2026-04-05T19:54:12.805Z" },
-    { url = "https://files.pythonhosted.org/packages/7f/4b/1fdbf51095bd3d85c0a3ea0aca1a55e19120fe8ba17998b78ab8586c3377/texterrors-1.1.6-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:3a370f4fad87f94ef16e255c22dc29b65e773ef198e3e4489f216183d6ddcd2e", size = 568789, upload-time = "2026-04-05T19:54:13.876Z" },
-    { url = "https://files.pythonhosted.org/packages/a7/f5/28942f3b8318374a0c30d4c6a9cb56ef3585634ef7d5baa81e81650264b7/texterrors-1.1.6-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8ea09057a62b687311fe1451b282584a03e3c749e0e666561413226194fd83ba", size = 612310, upload-time = "2026-04-05T19:54:14.897Z" },
-    { url = "https://files.pythonhosted.org/packages/02/d1/0ffa20219ff45560bda2548ed72a389397dff13f215226034c4000354298/texterrors-1.1.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a5c1891ef7d7fcbd7ac087ad1d8fd4191e45a823421f1422c35010d16d52ffec", size = 605927, upload-time = "2026-04-05T19:54:16.624Z" },
-    { url = "https://files.pythonhosted.org/packages/34/c7/aede51b7a8c5d3929bba1b18cf834444475d969653b1ef62b31bb2b6fd80/texterrors-1.1.6-cp312-cp312-musllinux_1_2_i686.whl", hash = "sha256:342aa42ef53b4303617fd08e7713323a7f63cd61fb296c39ca2be3061489d548", size = 1121790, upload-time = "2026-04-05T19:54:17.806Z" },
-    { url = "https://files.pythonhosted.org/packages/78/70/ff68c2cd7353c22e5c2fe31e32ec9c7fa412218e5f3eaf6fd7a07f1f29ab/texterrors-1.1.6-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:0a5074a6affff0a4cab51873f207fe69c54a4061107848b6cf62eef4e481ec53", size = 1074111, upload-time = "2026-04-05T19:54:18.982Z" },
-    { url = "https://files.pythonhosted.org/packages/16/9a/aa903ac43173586d990305499a45c89932ccea5d0eed124af77c2d279ef7/texterrors-1.1.6-cp312-cp312-win32.whl", hash = "sha256:b330d387bde0cc6542b4382467713358124ac551d4a1bc03e8484743b134185a", size = 567015, upload-time = "2026-04-05T19:54:20.129Z" },
-    { url = "https://files.pythonhosted.org/packages/d1/8e/acb1cc5edcb5c05255ed0ebc6e48eacceed73bf55f43f4d63d6bf0672566/texterrors-1.1.6-cp312-cp312-win_amd64.whl", hash = "sha256:faca46487ea387b71df7b44ea8d3916b05aa63d3c5075fa6a73ba8954da22a3a", size = 576299, upload-time = "2026-04-05T19:54:21.164Z" },
 ]
 
 [[package]]
@@ -3023,8 +3167,8 @@ name = "tokenizers"
 version = "0.22.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/73/6f/f80cfef4a312e1fb34baf7d85c72d4411afde10978d4657f8cdd811d3ccc/tokenizers-0.22.2.tar.gz", hash = "sha256:473b83b915e547aa366d1eee11806deaf419e17be16310ac0a14077f1e28f917", size = 372115, upload-time = "2026-01-05T10:45:15.988Z" }
 wheels = [
@@ -3043,6 +3187,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/fd/18/a545c4ea42af3df6effd7d13d250ba77a0a86fb20393143bbb9a92e434d4/tokenizers-0.22.2-cp39-abi3-win32.whl", hash = "sha256:a6bf3f88c554a2b653af81f3204491c818ae2ac6fbc09e76ef4773351292bc92", size = 2502363, upload-time = "2026-01-05T10:45:20.593Z" },
     { url = "https://files.pythonhosted.org/packages/65/71/0670843133a43d43070abeb1949abfdef12a86d490bea9cd9e18e37c5ff7/tokenizers-0.22.2-cp39-abi3-win_amd64.whl", hash = "sha256:c9ea31edff2968b44a88f97d784c2f16dc0729b8b143ed004699ebca91f05c48", size = 2747786, upload-time = "2026-01-05T10:45:18.411Z" },
     { url = "https://files.pythonhosted.org/packages/72/f4/0de46cfa12cdcbcd464cc59fde36912af405696f687e53a091fb432f694c/tokenizers-0.22.2-cp39-abi3-win_arm64.whl", hash = "sha256:9ce725d22864a1e965217204946f830c37876eee3b2ba6fc6255e8e903d5fcbc", size = 2612133, upload-time = "2026-01-05T10:45:17.232Z" },
+]
+
+[[package]]
+name = "toml"
+version = "0.10.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f", size = 22253, upload-time = "2020-11-01T01:40:22.204Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/6f/7120676b6d73228c96e17f1f794d8ab046fc910d781c8d151120c3f1569e/toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b", size = 16588, upload-time = "2020-11-01T01:40:20.672Z" },
 ]
 
 [[package]]
@@ -3068,20 +3221,21 @@ name = "torch"
 version = "2.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cuda-bindings", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "cuda-toolkit", extra = ["cudart", "cufft", "cufile", "cupti", "curand", "cusolver", "cusparse", "nvjitlink", "nvrtc", "nvtx"], marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "cuda-bindings", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "cuda-toolkit", extra = ["cudart", "cufft", "cufile", "cupti", "curand", "cusolver", "cusparse", "nvjitlink", "nvrtc", "nvtx"], marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "filelock" },
-    { name = "fsspec" },
+    { name = "fsspec", version = "2024.12.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "fsspec", version = "2025.12.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-cohere-asr' or extra == 'extra-13-radiotalk-asr-granite-speech' or extra != 'extra-13-radiotalk-asr-parakeet' or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "jinja2" },
     { name = "networkx" },
-    { name = "nvidia-cublas", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "nvidia-cudnn-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "nvidia-cusparselt-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "nvidia-nccl-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
-    { name = "nvidia-nvshmem-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cublas", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cudnn-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-cusparselt-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nccl-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "nvidia-nvshmem-cu13", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "setuptools" },
     { name = "sympy" },
-    { name = "triton", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "triton", marker = "sys_platform == 'linux' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
     { name = "typing-extensions" },
 ]
 wheels = [
@@ -3133,7 +3287,7 @@ name = "tqdm"
 version = "4.67.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/09/a9/6ba95a270c6f1fbcd8dac228323f2777d886cb206987444e4bce66338dd4/tqdm-4.67.3.tar.gz", hash = "sha256:7d825f03f89244ef73f1d4ce193cb1774a8179fd96f31d7e1dcde62092b960bb", size = 169598, upload-time = "2026-02-03T17:35:53.048Z" }
 wheels = [
@@ -3154,24 +3308,33 @@ name = "transformers"
 version = "4.57.6"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "platform_machine != 's390x' and sys_platform == 'win32'",
-    "platform_machine == 's390x' and sys_platform == 'win32'",
-    "platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
+    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr' and extra != 'extra-13-radiotalk-asr-whisper'",
 ]
 dependencies = [
-    { name = "filelock", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "numpy", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "packaging", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "pyyaml", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "regex", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "requests", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "safetensors", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "tokenizers", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "tqdm", marker = "extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "filelock", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "0.36.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "numpy", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "packaging", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "pyyaml", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "regex", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "requests", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "safetensors", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "tokenizers", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "tqdm", marker = "extra == 'extra-13-radiotalk-asr-parakeet' or extra == 'extra-13-radiotalk-asr-qwen-asr'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/c4/35/67252acc1b929dc88b6602e8c4a982e64f31e733b804c14bc24b47da35e6/transformers-4.57.6.tar.gz", hash = "sha256:55e44126ece9dc0a291521b7e5492b572e6ef2766338a610b9ab5afbb70689d3", size = 10134912, upload-time = "2026-01-16T10:38:39.284Z" }
 wheels = [
@@ -3183,23 +3346,20 @@ name = "transformers"
 version = "5.8.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "platform_machine != 's390x' and sys_platform == 'win32'",
-    "platform_machine == 's390x' and sys_platform == 'win32'",
-    "platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "sys_platform == 'win32'",
+    "sys_platform == 'emscripten'",
+    "sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "numpy", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "packaging", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "pyyaml", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "regex", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "safetensors", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "tokenizers", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "tqdm", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
-    { name = "typer", marker = "extra == 'extra-13-radiotalk-asr-whisper' or extra != 'extra-13-radiotalk-asr-qwen-asr'" },
+    { name = "huggingface-hub", version = "1.15.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "numpy", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "packaging", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "pyyaml", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "regex", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "safetensors", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "tokenizers", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "tqdm", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
+    { name = "typer", marker = "(extra == 'extra-13-radiotalk-asr-cohere-asr' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-cohere-asr' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra == 'extra-13-radiotalk-asr-parakeet') or (extra == 'extra-13-radiotalk-asr-granite-speech' and extra != 'extra-13-radiotalk-asr-qwen-asr') or (extra == 'extra-13-radiotalk-asr-parakeet' and extra == 'extra-13-radiotalk-asr-whisper') or (extra == 'extra-13-radiotalk-asr-qwen-asr' and extra == 'extra-13-radiotalk-asr-whisper') or (extra != 'extra-13-radiotalk-asr-parakeet' and extra != 'extra-13-radiotalk-asr-qwen-asr')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e7/e6/4134ea2fbea322cddc7ffc94a0d8ee47fe32ce8e876b320cd37d88edfc4d/transformers-5.8.1.tar.gz", hash = "sha256:4dd5b6de4105725104d84fd6abd74b305f4debfc251b38c648ee5dd087cf543b", size = 8532019, upload-time = "2026-05-13T03:21:57.234Z" }
 wheels = [
@@ -3365,12 +3525,17 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/47/6a/62e288da7bcda82b935ff0c6cfe542970f04e29c756b0e147251b2fb251f/wget-3.2.zip", hash = "sha256:35e630eca2aa50ce998b9b1a127bb26b30dfee573702782aa982f875e3f16061", size = 10857, upload-time = "2015-10-22T15:26:37.51Z" }
 
 [[package]]
-name = "win32-setctime"
-version = "1.2.0"
+name = "whisper-normalizer"
+version = "0.1.12"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b3/8f/705086c9d734d3b663af0e9bb3d4de6578d08f46b1b101c2442fd9aecaa2/win32_setctime-1.2.0.tar.gz", hash = "sha256:ae1fdf948f5640aae05c511ade119313fb6a30d7eabe25fef9764dca5873c4c0", size = 4867, upload-time = "2024-12-07T15:28:28.314Z" }
+dependencies = [
+    { name = "indic-numtowords" },
+    { name = "more-itertools" },
+    { name = "regex" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/77/81/d4a23d67e9356f1c2d6fe9aa7e99f42078b5e3845b181412a5582f168af4/whisper_normalizer-0.1.12.tar.gz", hash = "sha256:484dcedbfeba2ee94cf9412d57ab1e66b847e91f80c15ffc4c6ab82ad5484b8c", size = 39630, upload-time = "2025-06-06T19:03:50.75Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/07/c6fe3ad3e685340704d314d765b7912993bcb8dc198f0e7a89382d37974b/win32_setctime-1.2.0-py3-none-any.whl", hash = "sha256:95d644c4e708aba81dc3704a116d8cbc974d70b3bdb8be1d150e36be6e9d1390", size = 4083, upload-time = "2024-12-07T15:28:26.465Z" },
+    { url = "https://files.pythonhosted.org/packages/07/d7/2bf42cb3f19da0aec48052a6e3bc3a592afc182fe98c011a0e0ae5fbe1f5/whisper_normalizer-0.1.12-py3-none-any.whl", hash = "sha256:2cd7276d2599c05147a50cf86d240e6cd27623f5ccfe8b20ccea6a518274989a", size = 36748, upload-time = "2025-06-06T19:03:49.182Z" },
 ]
 
 [[package]]

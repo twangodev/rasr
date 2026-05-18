@@ -25,6 +25,13 @@ def run(
             readable=True,
         ),
     ],
+    dry_run: Annotated[
+        bool,
+        typer.Option(
+            "--dry-run",
+            help="Load and validate the config but don't kick off training.",
+        ),
+    ] = False,
     overrides: Annotated[
         list[str] | None,
         typer.Argument(
@@ -43,12 +50,21 @@ def run(
     console.print(f"  val:      {len(cfg.data.validation)} dataset(s)")
     for ds in cfg.data.validation:
         console.print(f"            - {ds.dataset}")
-    console.print(f"  steps:    {cfg.trainer.max_steps} (val every {cfg.trainer.val_check_interval})")
-    console.print(f"  batch:    {cfg.trainer.batch_size} × {cfg.trainer.devices} GPU")
+    console.print(
+        f"  steps:    {cfg.trainer.max_steps} "
+        f"(val every {cfg.trainer.val_check_interval})"
+    )
+    console.print(
+        f"  batch:    {cfg.trainer.batch_size} x {cfg.trainer.devices} GPU"
+    )
     console.print(f"  precision: {cfg.trainer.precision}")
     console.print(f"  output:   {cfg.output.dir}")
-    console.print()
-    console.print(
-        "[yellow]Trainer backend not yet wired — "
-        "this command currently validates the config only.[/yellow]"
-    )
+
+    if dry_run:
+        console.print("[yellow]--dry-run: skipping trainer.[/yellow]")
+        return
+
+    from rasr.train.nemo import run as nemo_run
+
+    final_path = nemo_run(cfg)
+    console.print(f"[green]Training done.[/green] Saved: {final_path}")

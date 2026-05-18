@@ -4,7 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "datasets>=4.8.5",
-    "jiwer>=4.0.0",
+    "jiwer>=3.1.0",
     "numpy>=2.4.5",
     "pydantic>=2.13.4",
     "radiotalk",
@@ -39,7 +39,7 @@ granite-speech = [
     "transformers>=4.57.6",
 ]
 parakeet = [
-    "nemo-toolkit[asr]>=2.1.0",
+    "nemo-toolkit[asr]>=2.7",
 ]
 
 [build-system]
@@ -52,6 +52,9 @@ packages = ["src/rasr"]
 [tool.uv]
 conflicts = [
     [{ extra = "whisper" }, { extra = "qwen-asr" }],
+    [{ extra = "whisper" }, { extra = "parakeet" }],
+    [{ extra = "cohere-asr" }, { extra = "parakeet" }],
+    [{ extra = "granite-speech" }, { extra = "parakeet" }],
 ]
 
 [tool.uv.sources]

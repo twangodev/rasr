@@ -14,19 +14,28 @@ class ParakeetModel:
     in-memory numpy arrays at 16kHz mono and does its own internal batching.
     Language auto-detected — the upstream API doesn't take a language hint, so
     the constructor ignores it for now.
+
+    `from_path=True` loads a locally saved .nemo checkpoint via
+    `ASRModel.restore_from`, used by the `nemo:` model scheme to consume
+    rasr-trained outputs.
     """
 
     def __init__(
         self,
-        hf_id: str,
+        hf_id_or_path: str,
         language: str | None = None,
         batch_size: int = 16,
+        from_path: bool = False,
     ):
         import nemo.collections.asr as nemo_asr
         import torch
 
-        self.id = f"parakeet:{hf_id}"
-        self.model = nemo_asr.models.ASRModel.from_pretrained(hf_id)
+        if from_path:
+            self.id = f"nemo:{hf_id_or_path}"
+            self.model = nemo_asr.models.ASRModel.restore_from(hf_id_or_path)
+        else:
+            self.id = f"parakeet:{hf_id_or_path}"
+            self.model = nemo_asr.models.ASRModel.from_pretrained(hf_id_or_path)
         if torch.cuda.is_available():
             self.model = self.model.cuda()
         self.model.eval()
@@ -51,7 +60,6 @@ class ParakeetModel:
             batch_size=min(self.batch_size, len(arrays)),
             verbose=False,
         )
-        # NeMo returns (predictions, _) — take the predictions list.
         if isinstance(outputs, tuple):
             outputs = outputs[0]
         return [

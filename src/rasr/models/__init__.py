@@ -38,6 +38,11 @@ def load_model(model_id: str, *, language: str | None = None) -> Model:
 
         return ParakeetModel(ref, language=language)
 
+    if scheme == "nemo":
+        from rasr.models.parakeet import ParakeetModel
+
+        return ParakeetModel(ref, language=language, from_path=True)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
