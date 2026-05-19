@@ -9,7 +9,15 @@ from pathlib import Path
 from radiotalk.normalize import normalize
 
 from rasr.datasets import load_dataset
-from rasr.eval.metrics import corpus_cer, corpus_wer, summarize, utt_cer, utt_wer
+from rasr.eval.metrics import (
+    corpus_cer,
+    corpus_numeric_wer,
+    corpus_wer,
+    summarize,
+    utt_cer,
+    utt_numeric_wer,
+    utt_wer,
+)
 from rasr.models import load_model
 from rasr.models.base import AudioInput
 from rasr.store import RunManifest, git_sha, new_run_id, write_manifest
@@ -49,6 +57,7 @@ def run_eval(
     refs: list[str] = []
     per_utt_wer: list[float] = []
     per_utt_cer: list[float] = []
+    per_utt_num: list[float] = []  # only utts whose ref has numeric content
 
     source = iter(dataset)
     if limit is not None:
@@ -63,10 +72,13 @@ def run_eval(
                 ref = normalize(utt.reference)
                 w = utt_wer(ref, hyp)
                 c = utt_cer(ref, hyp)
+                nw = utt_numeric_wer(ref, hyp)
                 hyps.append(hyp)
                 refs.append(ref)
                 per_utt_wer.append(w)
                 per_utt_cer.append(c)
+                if nw is not None:
+                    per_utt_num.append(nw)
                 f.write(
                     json.dumps(
                         {
@@ -77,6 +89,7 @@ def run_eval(
                             "hypothesis": hyp,
                             "wer": w,
                             "cer": c,
+                            "numeric_wer": nw,
                         }
                     )
                     + "\n"
@@ -85,9 +98,12 @@ def run_eval(
     summary = {
         "corpus_wer": corpus_wer(refs, hyps),
         "corpus_cer": corpus_cer(refs, hyps),
+        "corpus_numeric_wer": corpus_numeric_wer(refs, hyps),
         "n": len(per_utt_wer),
+        "n_numeric": len(per_utt_num),
         **summarize(per_utt_wer, "wer"),
         **summarize(per_utt_cer, "cer"),
+        **summarize(per_utt_num, "numeric_wer"),
         "n_runaway": sum(1 for w in per_utt_wer if w > 1.0),
     }
 

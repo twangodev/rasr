@@ -1,8 +1,46 @@
 from __future__ import annotations
 
+import re
 import statistics
 
 import jiwer
+
+_NUMBER_WORDS = {
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+    "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty",
+    "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million",
+    "point", "decimal",
+}
+
+# Standard ATC pronunciation variants that radiotalk.normalize doesn't collapse.
+_ATC_NUMBER_VARIANTS = {
+    "niner": "nine",
+    "tree": "three",
+    "fife": "five",
+}
+
+_DIGIT_RE = re.compile(r"^\d+(?:\.\d+)?$")
+_PUNCT_STRIP = ".,!?;:'\""
+
+
+def _extract_numeric_tokens(text: str) -> str:
+    """Return the subsequence of `text` containing only numeric content.
+
+    Keeps cardinal number words (zero–nine, teens, tens, hundred/thousand,
+    point/decimal), ATC pronunciation variants (niner→nine, tree→three,
+    fife→five), and pure digit substrings. Everything else is dropped.
+    """
+    tokens = text.lower().split()
+    out: list[str] = []
+    for tok in tokens:
+        clean = tok.strip(_PUNCT_STRIP)
+        if not clean:
+            continue
+        canonical = _ATC_NUMBER_VARIANTS.get(clean, clean)
+        if canonical in _NUMBER_WORDS or _DIGIT_RE.match(canonical):
+            out.append(canonical)
+    return " ".join(out)
 
 canonical_transform = jiwer.Compose(
     [
@@ -70,6 +108,45 @@ def utt_cer(ref: str, hyp: str) -> float:
             hyp,
             reference_transform=canonical_char_transform,
             hypothesis_transform=canonical_char_transform,
+        )
+    )
+
+
+def corpus_numeric_wer(refs: list[str], hyps: list[str]) -> float:
+    """WER computed over only the numeric tokens of each ref/hyp.
+
+    Captures ATC's safety-critical content (callsign digits, headings,
+    altitudes, frequencies, runway IDs, squawks). Utterances whose
+    reference has no numeric content are excluded from the calculation.
+    """
+    ref_nums = [_extract_numeric_tokens(r) for r in refs]
+    hyp_nums = [_extract_numeric_tokens(h) for h in hyps]
+    pairs = [(r, h) for r, h in zip(ref_nums, hyp_nums) if r.strip()]
+    if not pairs:
+        return float("nan")
+    refs_f, hyps_f = zip(*pairs)
+    return float(
+        jiwer.wer(
+            list(refs_f),
+            list(hyps_f),
+            reference_transform=canonical_transform,
+            hypothesis_transform=canonical_transform,
+        )
+    )
+
+
+def utt_numeric_wer(ref: str, hyp: str) -> float | None:
+    """Per-utterance numeric WER; None if the reference has no numbers."""
+    r = _extract_numeric_tokens(ref)
+    if not r.strip():
+        return None
+    h = _extract_numeric_tokens(hyp)
+    return float(
+        jiwer.wer(
+            r,
+            h,
+            reference_transform=canonical_transform,
+            hypothesis_transform=canonical_transform,
         )
     )
 
