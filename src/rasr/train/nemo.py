@@ -72,6 +72,7 @@ def run(cfg: TrainConfig) -> Path:
 
     sa = cfg.augmentation.spec_augment
     sp = cfg.augmentation.speed_perturb
+    bp = cfg.augmentation.bandpass
     augmentor = {}
     if sp.enabled:
         augmentor["speed"] = {
@@ -80,6 +81,16 @@ def run(cfg: TrainConfig) -> Path:
             "min_speed_rate": sp.min_rate,
             "max_speed_rate": sp.max_rate,
             "resample_type": "kaiser_fast",
+        }
+    if bp.enabled:
+        from rasr.train.augment import register as _register_bandpass
+
+        _register_bandpass()
+        augmentor["bandpass"] = {
+            "prob": bp.prob,
+            "low_hz": bp.low_hz,
+            "high_hz": bp.high_hz,
+            "sr": cfg.data.audio.sample_rate,
         }
 
     train_ds_cfg = OmegaConf.create(

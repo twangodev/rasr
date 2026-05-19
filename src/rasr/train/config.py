@@ -62,10 +62,18 @@ class NoiseCfg(BaseModel):
     enabled: bool = False
 
 
+class BandpassCfg(BaseModel):
+    enabled: bool = False
+    low_hz: int = 300
+    high_hz: int = 3400
+    prob: float = 1.0
+
+
 class AugmentationCfg(BaseModel):
     spec_augment: SpecAugmentCfg = Field(default_factory=SpecAugmentCfg)
     speed_perturb: SpeedPerturbCfg = Field(default_factory=SpeedPerturbCfg)
     noise: NoiseCfg = Field(default_factory=NoiseCfg)
+    bandpass: BandpassCfg = Field(default_factory=BandpassCfg)
 
 
 class TrainerCfg(BaseModel):

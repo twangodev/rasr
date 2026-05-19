@@ -1,0 +1,41 @@
+# Mixed v1 variation: same 10x real anchor as parakeet-mixed.yaml, plus
+# bandpass-300-3400-Hz augmentation to mimic VHF channel characteristics on
+# the synthetic audio. Tests whether closing the synth-vs-real spectral gap
+# improves transfer to real ATCO2 on top of the vocabulary anchor.
+# Expected wall clock: ~12 hours on the 6000 Pro (cache shared with mixed).
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-mixed-bandpass
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-tada-noisy:train
+      weight: 1.0
+      limit: 200000
+    - dataset: hf:jlvdoorn/atco2-asr:train
+      weight: 10.0
+    - dataset: hf:jlvdoorn/atco2-asr-atcosim:train
+      weight: 10.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+augmentation:
+  noise:
+    enabled: false
+  bandpass:
+    enabled: true
+    low_hz: 300
+    high_hz: 3400
+    prob: 1.0
+
+trainer:
+  max_steps: 50000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}

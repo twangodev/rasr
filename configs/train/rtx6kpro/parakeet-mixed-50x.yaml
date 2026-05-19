@@ -1,0 +1,35 @@
+# Mixed v1 variation: heavier real-data anchor (50x vs the 10x baseline).
+# Tests whether 10x upweighting was enough or if we need to bias harder toward
+# real-ATC distribution. Risk: overfitting to the 10k real anchor.
+# Expected wall clock: ~10-12 hours on the 6000 Pro (cache shared with mixed).
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-mixed-50x
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-tada-noisy:train
+      weight: 1.0
+      limit: 200000
+    - dataset: hf:jlvdoorn/atco2-asr:train
+      weight: 50.0
+    - dataset: hf:jlvdoorn/atco2-asr-atcosim:train
+      weight: 50.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+augmentation:
+  noise:
+    enabled: false
+
+trainer:
+  max_steps: 50000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}
