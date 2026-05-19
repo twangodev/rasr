@@ -43,6 +43,11 @@ def load_model(model_id: str, *, language: str | None = None) -> Model:
 
         return ParakeetModel(ref, language=language, from_path=True)
 
+    if scheme == "canary-qwen":
+        from rasr.models.canary_qwen import CanaryQwenSalmModel
+
+        return CanaryQwenSalmModel(ref, language=language)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
