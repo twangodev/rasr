@@ -1,6 +1,8 @@
-# 50k-step mixed run. Radiotalk synthetic at scale + real ATCO2/ATCOSIM
-# upweighted to anchor distribution. Target: beat jlvdoorn's 15.7% on ATCO2 val.
-# Expected wall clock: ~5 hours on the 6000 Pro.
+# 50k-step mixed run. Radiotalk synthetic + real ATCO2/ATCOSIM upweighted
+# 10x to anchor distribution and supply the European/GA callsigns radiotalk
+# doesn't cover. Target: meaningfully close the gap vs jlvdoorn's 0.157 WER
+# on ATCO2 val. Expected wall clock: ~10-12 hours on the 6000 Pro
+# (includes ~1 hr to dump the additional 100k radiotalk WAVs).
 
 defaults: [base, rtx6kpro/hw]
 
@@ -14,8 +16,9 @@ data:
   train:
     - dataset: hf:twangodev/radiotalk-us-audio-tada-noisy:train
       weight: 1.0
+      limit: 200000           # 2x the radiotalk-100k cache; remove when Lhotse lands
     - dataset: hf:jlvdoorn/atco2-asr:train
-      weight: 10.0           # upweight real ATC ~10x; synthetic provides scale
+      weight: 10.0            # upweight real ATC 10x; small but anchors distribution
     - dataset: hf:jlvdoorn/atco2-asr-atcosim:train
       weight: 10.0
   validation:
@@ -23,7 +26,7 @@ data:
 
 augmentation:
   noise:
-    enabled: true             # only for mixed; real radiotalk audio is already noisy
+    enabled: false            # leaving off until a noise corpus is wired up
 
 trainer:
   max_steps: 50000
