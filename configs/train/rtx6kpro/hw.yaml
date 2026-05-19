@@ -3,7 +3,7 @@
 trainer:
   precision: bf16-mixed       # native Blackwell, not the deprecated "bf16" alias
   devices: 1
-  batch_size: 32              # ~35 GB peak at 16 kHz / 18s max; headroom remains
+  batch_size: 48              # ~88 GB peak at 16 kHz / 18s max on 96 GB Blackwell
   num_workers: 16
   accumulate_grad_batches: 1
   gradient_clip_val: 1.0
