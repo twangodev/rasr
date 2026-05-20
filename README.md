@@ -1,4 +1,4 @@
-# radiotalk-asr
+# rasr
 
 [![benchmarks](https://img.shields.io/badge/benchmarks-view-blue)](BENCHMARKS.md)
 
