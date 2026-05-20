@@ -6,7 +6,7 @@
 
 | Model | Type | WER | CER | numeric WER | wer_median | n_runaway |
 |---|---|---|---|---|---|---|
-| **`nemo:ckpt/parakeet-mixed/final.nemo`** (rasr v1 FT) | mixed synth + real | **0.125** | **0.078** | **0.050** | 0.091 | 1 |
+| **`twangodev/rasr-parakeet-v1`** (rasr v1 FT) | mixed synth + real | **0.125** | **0.078** | **0.050** | 0.091 | 1 |
 | `nemo:ckpt/parakeet-mixed-bandpass/final.nemo` (rasr) | mixed + bandpass aug | 0.130 | 0.082 | 0.060 | 0.083 | 1 |
 | `jlvdoorn/whisper-large-v3-atco2-asr` | Whisper ATC finetune | 0.157 | 0.088 | 0.074 | 0.100 | 0 |
 | `jeffreysuu/whisper-atc-finetuned` | Whisper US-ATC finetune | 0.251 | 0.147 | — | 0.216 | 1 |
@@ -23,7 +23,7 @@ Caveat: radiotalk is US-style synthetic; ATCO2 is European real-radio. The headl
 LLM-decoder ASR caveat: `canary-qwen` (currently #1 on HF's Open ASR Leaderboard at 5.63% on clean English) drops to 56% here because its Qwen3 decoder confabulates fluent English when the audio is degraded — confident, completely wrong outputs rather than partial recognition (`n_runaway=5`, `wer_max=6.14`). Same failure mode as Granite Speech. Not a safe pattern for ATC.
 
 ```bash
-rasr eval run -m nemo:./ckpt/parakeet-mixed/final.nemo                 -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
+rasr eval run -m nemo:hf://twangodev/rasr-parakeet-v1                  -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m nemo:./ckpt/parakeet-mixed-bandpass/final.nemo        -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m whisper:jlvdoorn/whisper-large-v3-atco2-asr           -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m whisper:jeffreysuu/whisper-atc-finetuned              -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
@@ -73,7 +73,7 @@ rasr eval run -m granite-speech:ibm-granite/granite-speech-4.1-2b      -d hf:twa
 
 ```bash
 rasr train run -c configs/train/rtx6kpro/parakeet-mixed.yaml
-rasr eval  run -m nemo:./ckpt/parakeet-mixed/final.nemo -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
+rasr eval  run -m nemo:hf://twangodev/rasr-parakeet-v1 -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 ```
 
 ## Cross-dataset gap
