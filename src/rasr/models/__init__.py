@@ -53,6 +53,11 @@ def load_model(model_id: str, *, language: str | None = None) -> Model:
 
         return CanaryAsrModel(ref, language=language)
 
+    if scheme == "mega-asr":
+        from rasr.models.mega_asr import MegaAsrModel
+
+        return MegaAsrModel(ref, language=language)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
