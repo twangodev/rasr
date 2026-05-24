@@ -61,18 +61,6 @@ voxtral = [
     "torchcodec>=0.12.0",
     "transformers>=4.54.0",
 ]
-phi4-multimodal = [
-    "accelerate>=1.13.0",
-    "backoff>=2.2",
-    "librosa>=0.11.0",
-    "peft>=0.19.1",
-    "scipy>=1.11",
-    "soundfile>=0.13.1",
-    "torch>=2.12.0",
-    "torchcodec>=0.12.0",
-    "torchvision>=0.20.0",
-    "transformers>=4.48.0",
-]
 
 [build-system]
 requires = ["hatchling"]
@@ -82,10 +70,21 @@ build-backend = "hatchling.build"
 packages = ["src/rasr"]
 
 [tool.uv]
-# qwen-asr 0.0.6 hard-pins accelerate==1.12.0 but radiotalk requires >=1.13.0.
-# Force a single accelerate version across the workspace — qwen-asr's pin is
-# stricter than its actual API surface needs.
-override-dependencies = ["accelerate>=1.13.0"]
+# Linux-only — nemo-toolkit (parakeet) doesn't build cleanly on win32 and
+# darwin lacks CUDA, so restricting here narrows the fork space the resolver
+# has to satisfy on every change.
+environments = ["sys_platform == 'linux'"]
+# Sibling-repo / transitive constraint mismatches force-resolved at the project
+# level:
+# - qwen-asr 0.0.6 hard-pins accelerate==1.12.0 but radiotalk requires
+#   >=1.13.0. qwen-asr's pin is stricter than its actual API surface needs.
+# - nemo-toolkit (parakeet) wants protobuf>=5.29.5; descript-audio-codec
+#   (transitive via radiotalk → snac) wants <3.20. protobuf 5.x is wire-level
+#   backwards-compatible with 3.x; force-pin up.
+override-dependencies = [
+    "accelerate>=1.13.0",
+    "protobuf>=5.29.5",
+]
 conflicts = [
     [{ extra = "whisper" }, { extra = "qwen-asr" }],
     [{ extra = "whisper" }, { extra = "parakeet" }],
@@ -95,9 +94,6 @@ conflicts = [
     [{ extra = "whisper" }, { extra = "mega-asr" }],
     [{ extra = "mega-asr" }, { extra = "parakeet" }],
     [{ extra = "voxtral" }, { extra = "parakeet" }],
-    [{ extra = "phi4-multimodal" }, { extra = "parakeet" }],
-    [{ extra = "phi4-multimodal" }, { extra = "qwen-asr" }],
-    [{ extra = "phi4-multimodal" }, { extra = "mega-asr" }],
 ]
 
 [tool.uv.sources]
