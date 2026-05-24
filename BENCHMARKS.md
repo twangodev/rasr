@@ -15,12 +15,14 @@
 | `qwen-asr:Qwen/Qwen3-ASR-1.7B` | generic | 0.398 | 0.233 | — | 0.364 | 2 |
 | `whisper:openai/whisper-large-v3-turbo` | generic | 0.423 | 0.252 | — | 0.441 | 1 |
 | `parakeet:nvidia/parakeet-tdt-0.6b-v3` | generic | 0.464 | 0.265 | 0.294 | 0.462 | 1 |
-| `canary-qwen:nvidia/canary-qwen-2.5b` | LLM-decoder ASR | 0.561 | 0.379 | 0.362 | 0.514 | 5 |
 | `granite-speech:ibm-granite/granite-speech-4.1-2b` | LLM-decoder ASR | 0.332 | — | — | 0.270 | 0 |
+| `voxtral:mistralai/Voxtral-Mini-3B-2507` | LLM-decoder ASR | 0.405 | 0.239 | 0.346 | 0.394 | 0 |
+| `voxtral:mistralai/Voxtral-Small-24B-2507` | LLM-decoder ASR | 0.438 | 0.308 | 0.258 | 0.308 | 2 |
+| `canary-qwen:nvidia/canary-qwen-2.5b` | LLM-decoder ASR | 0.561 | 0.379 | 0.362 | 0.514 | 5 |
 
 Caveat: radiotalk is US-style synthetic; ATCO2 is European real-radio. The headline gap on generic models is partly an OOD-evaluation penalty.
 
-LLM-decoder ASR caveat: `canary-qwen` (currently #1 on HF's Open ASR Leaderboard at 5.63% on clean English) drops to 56% here because its Qwen3 decoder confabulates fluent English when the audio is degraded — confident, completely wrong outputs rather than partial recognition (`n_runaway=5`, `wer_max=6.14`). Same failure mode as Granite Speech. Not a safe pattern for ATC.
+LLM-decoder ASR caveat: `canary-qwen` (currently #1 on HF's Open ASR Leaderboard at 5.63% on clean English) drops to 56% here because its Qwen3 decoder confabulates fluent English when the audio is degraded — confident, completely wrong outputs rather than partial recognition (`n_runaway=5`, `wer_max=6.14`). Voxtral shows the same failure mode at scale: the 24B Small has `wer_max=22.6` (one clip's hypothesis was 22× longer than the reference) and `n_runaway=2`, while the 3B Mini doesn't have enough decoder capacity to confabulate fluent English and stays bounded (`wer_max=1.0`, `n_runaway=0`) — counterintuitively making it the safer pick of the two for OOD audio. Pattern holds across vendors: bigger LLM-decoder ASR = better median accuracy on clean speech, worse tail behavior on degraded ATC.
 
 ```bash
 rasr eval run -m nemo:hf://twangodev/rasr-parakeet-v1                  -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
@@ -32,6 +34,8 @@ rasr eval run -m cohere:CohereLabs/cohere-transcribe-03-2026           -d hf:jlv
 rasr eval run -m qwen-asr:Qwen/Qwen3-ASR-1.7B                          -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m whisper:openai/whisper-large-v3-turbo                 -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m parakeet:nvidia/parakeet-tdt-0.6b-v3                  -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
+rasr eval run -m voxtral:mistralai/Voxtral-Mini-3B-2507                -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
+rasr eval run -m voxtral:mistralai/Voxtral-Small-24B-2507              -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
 rasr eval run -m canary-qwen:nvidia/canary-qwen-2.5b                   -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
 rasr eval run -m granite-speech:ibm-granite/granite-speech-4.1-2b      -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
 ```

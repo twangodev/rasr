@@ -58,6 +58,11 @@ def load_model(model_id: str, *, language: str | None = None) -> Model:
 
         return MegaAsrModel(ref, language=language)
 
+    if scheme == "voxtral":
+        from rasr.models.voxtral import VoxtralModel
+
+        return VoxtralModel(ref, language=language)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
