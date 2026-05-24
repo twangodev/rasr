@@ -63,6 +63,11 @@ def load_model(model_id: str, *, language: str | None = None) -> Model:
 
         return VoxtralModel(ref, language=language)
 
+    if scheme == "phi4-multimodal":
+        from rasr.models.phi4_multimodal import Phi4MultimodalModel
+
+        return Phi4MultimodalModel(ref, language=language)
+
     raise ValueError(f"Unknown model scheme: {scheme!r}")
 
 
