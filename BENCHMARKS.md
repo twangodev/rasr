@@ -11,10 +11,13 @@
 | `jlvdoorn/whisper-large-v3-atco2-asr` | Whisper ATC finetune | 0.157 | 0.088 | 0.074 | 0.100 | 0 |
 | `jeffreysuu/whisper-atc-finetuned` | Whisper US-ATC finetune | 0.251 | 0.147 | — | 0.216 | 1 |
 | `nemo:ckpt/parakeet-radiotalk/final.nemo` (rasr synth-only) | synth-only finetune | 0.344 | 0.230 | 0.223 | 0.306 | 3 |
+| `whisper:openai/whisper-large-v3` | generic | 0.379 | 0.234 | 0.346 | 0.364 | 2 |
 | `cohere:CohereLabs/cohere-transcribe-03-2026` | generic | 0.384 | 0.216 | — | 0.343 | 4 |
 | `qwen-asr:Qwen/Qwen3-ASR-1.7B` | generic | 0.398 | 0.233 | — | 0.364 | 2 |
 | `whisper:openai/whisper-large-v3-turbo` | generic | 0.423 | 0.252 | — | 0.441 | 1 |
 | `parakeet:nvidia/parakeet-tdt-0.6b-v3` | generic | 0.464 | 0.265 | 0.294 | 0.462 | 1 |
+| `parakeet:nvidia/parakeet-tdt-0.6b-v2` | generic | 0.484 | 0.316 | 0.252 | 0.467 | 0 |
+| `parakeet:nvidia/parakeet-rnnt-1.1b` | generic | 0.508 | 0.359 | 0.304 | 0.529 | 0 |
 | `granite-speech:ibm-granite/granite-speech-4.1-2b` | LLM-decoder ASR | 0.332 | — | — | 0.270 | 0 |
 | `voxtral:mistralai/Voxtral-Mini-3B-2507` | LLM-decoder ASR | 0.405 | 0.239 | 0.346 | 0.394 | 0 |
 | `voxtral:mistralai/Voxtral-Small-24B-2507` | LLM-decoder ASR | 0.438 | 0.308 | 0.258 | 0.308 | 2 |
@@ -32,8 +35,11 @@ rasr eval run -m whisper:jeffreysuu/whisper-atc-finetuned              -d hf:jlv
 rasr eval run -m nemo:./ckpt/parakeet-radiotalk/final.nemo             -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m cohere:CohereLabs/cohere-transcribe-03-2026           -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 8
 rasr eval run -m qwen-asr:Qwen/Qwen3-ASR-1.7B                          -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
+rasr eval run -m whisper:openai/whisper-large-v3                       -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m whisper:openai/whisper-large-v3-turbo                 -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m parakeet:nvidia/parakeet-tdt-0.6b-v3                  -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
+rasr eval run -m parakeet:nvidia/parakeet-tdt-0.6b-v2                  -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
+rasr eval run -m parakeet:nvidia/parakeet-rnnt-1.1b                    -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 16
 rasr eval run -m voxtral:mistralai/Voxtral-Mini-3B-2507                -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
 rasr eval run -m voxtral:mistralai/Voxtral-Small-24B-2507              -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
 rasr eval run -m canary-qwen:nvidia/canary-qwen-2.5b                   -d hf:jlvdoorn/atco2-asr:validation --language en --batch-size 1
