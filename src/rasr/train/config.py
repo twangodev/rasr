@@ -24,6 +24,18 @@ class AudioCfg(BaseModel):
     min_duration: float = 0.1
 
 
+class SSLDatasetCfg(BaseModel):
+    """An unlabeled audio source for SSL pretraining.
+
+    `source` is either `hf:<owner>/<repo>[:<split>]` or a local glob of audio
+    files. No text/transcript is required or read.
+    """
+
+    source: str
+    limit: int | None = None
+    min_db: float | None = None  # keep only clips with max level >= this (TartanAviation: -20)
+
+
 class DataCfg(BaseModel):
     train: list[DatasetCfg]
     validation: list[DatasetCfg]
