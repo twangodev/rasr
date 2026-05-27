@@ -141,7 +141,16 @@ def run(cfg: SSLTrainConfig) -> Path:
     # 1. Build the SSL manifest (no text) from the configured source.
     print(f"[rasr.train.ssl] building SSL manifest from {cfg.ssl.source}")
     manifest = build_ssl_manifest(
-        SSLDatasetCfg(source=cfg.ssl.source, limit=cfg.ssl.limit, min_db=cfg.ssl.min_db),
+        SSLDatasetCfg(
+            source=cfg.ssl.source,
+            limit=cfg.ssl.limit,
+            min_db=cfg.ssl.min_db,
+            segment=cfg.ssl.segment,
+            segment_top_db=cfg.ssl.segment_top_db,
+            segment_min_s=cfg.ssl.segment_min_s,
+            segment_max_s=cfg.ssl.segment_max_s,
+            segment_pad_s=cfg.ssl.segment_pad_s,
+        ),
         cfg.audio,
         Path("data/cache/ssl"),
     )

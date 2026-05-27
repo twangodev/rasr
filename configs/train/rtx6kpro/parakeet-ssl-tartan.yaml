@@ -14,6 +14,18 @@ ssl:
   source: local:/data/tartanaviation/audio/**/*.wav   # update to your download path
   min_db: -20.0
   init_encoder_from: nvidia/parakeet-tdt-0.6b-v3
+  # TartanAviation recordings are multi-minute continuous ATC channels (~95% dead
+  # air). Energy-VAD split each into utterance chunks before SSL.
+  segment: true
+  segment_top_db: 40.0
+  segment_min_s: 0.5
+  segment_max_s: 30.0
+# Override the inherited 18s cap so 30s segment chunks pass the dataloader's
+# duration filter (load_ssl_train_config maps data.audio -> top-level audio).
+data:
+  audio:
+    max_duration: 30.0
+    min_duration: 0.5
 trainer:
   max_steps: 20000
   val_check_interval: 2000

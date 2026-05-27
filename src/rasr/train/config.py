@@ -35,6 +35,11 @@ class SSLDatasetCfg(BaseModel):
     source: str
     limit: int | None = None
     min_db: float | None = None  # keep only clips with max level >= this (TartanAviation: -20)
+    segment: bool = False           # if True, energy-VAD split each recording into utterance chunks
+    segment_top_db: float = 40.0    # librosa.effects.split threshold (dB below peak)
+    segment_min_s: float = 0.5      # drop chunks shorter than this
+    segment_max_s: float = 30.0     # chunks longer than this are chopped into <=max_s windows
+    segment_pad_s: float = 0.15     # pad each chunk edge to avoid clipping onsets
 
 
 class DataCfg(BaseModel):
@@ -123,6 +128,11 @@ class SSLBlockCfg(BaseModel):
     limit: int | None = None
     min_db: float | None = None
     init_encoder_from: str | None = None  # parakeet ref/path whose encoder seeds SSL
+    segment: bool = False           # if True, energy-VAD split each recording into utterance chunks
+    segment_top_db: float = 40.0    # librosa.effects.split threshold (dB below peak)
+    segment_min_s: float = 0.5      # drop chunks shorter than this
+    segment_max_s: float = 30.0     # chunks longer than this are chopped into <=max_s windows
+    segment_pad_s: float = 0.15     # pad each chunk edge to avoid clipping onsets
 
 
 class SSLTrainConfig(BaseModel):
