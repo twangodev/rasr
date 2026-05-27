@@ -133,6 +133,7 @@ class SSLBlockCfg(BaseModel):
     segment_min_s: float = 0.5      # drop chunks shorter than this
     segment_max_s: float = 30.0     # chunks longer than this are chopped into <=max_s windows
     segment_pad_s: float = 0.15     # pad each chunk edge to avoid clipping onsets
+    freeze_encoder_steps: int = 0   # if >0, freeze the encoder for this many steps, then unfreeze
 
 
 class SSLTrainConfig(BaseModel):

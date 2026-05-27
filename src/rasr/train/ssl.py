@@ -127,6 +127,36 @@ optim:
 """
 
 
+class _EncoderUnfreezeCallback:
+    """Unfreezes the encoder once `trainer.global_step >= freeze_steps`.
+
+    Implemented lazily as a plain class subclassing the Lightning Callback at
+    instantiation time so the heavy `lightning` import stays inside `run`.
+    """
+
+    def __new__(cls, freeze_steps: int):
+        from lightning.pytorch.callbacks import Callback
+
+        class _Impl(Callback):
+            def __init__(self, freeze_steps: int) -> None:
+                super().__init__()
+                self._freeze_steps = freeze_steps
+                self._unfrozen = False
+
+            def on_train_batch_start(self, trainer, pl_module, batch, batch_idx):
+                if self._unfrozen:
+                    return
+                if trainer.global_step >= self._freeze_steps:
+                    for p in pl_module.encoder.parameters():
+                        p.requires_grad = True
+                    self._unfrozen = True
+                    print(
+                        f"[rasr.train.ssl] unfroze encoder at step {trainer.global_step}"
+                    )
+
+        return _Impl(freeze_steps)
+
+
 def run(cfg: SSLTrainConfig) -> Path:
     """Continue-pretrain a Parakeet encoder with NEST SSL. Returns saved .nemo path."""
     import lightning.pytorch as pl
@@ -230,6 +260,19 @@ def run(cfg: SSLTrainConfig) -> Path:
         save_last=True,
     )
 
+    # 6b. Optional encoder-freeze warmup: freeze the encoder for the first
+    #     `freeze_encoder_steps` steps so the random NEST decoder head can warm up
+    #     against stable features, then unfreeze for gentle joint adaptation. The
+    #     params stay in the optimizer with requires_grad=False (no grad => no update
+    #     while frozen), so we do NOT rebuild the optimizer on unfreeze.
+    callbacks = [ckpt_cb]
+    freeze_steps = cfg.ssl.freeze_encoder_steps
+    if freeze_steps > 0:
+        for p in model.encoder.parameters():
+            p.requires_grad = False
+        print(f"[rasr.train.ssl] froze encoder for first {freeze_steps} steps")
+        callbacks.append(_EncoderUnfreezeCallback(freeze_steps))
+
     trainer = pl.Trainer(
         devices=cfg.trainer.devices,
         accelerator="gpu",
@@ -239,7 +282,7 @@ def run(cfg: SSLTrainConfig) -> Path:
         accumulate_grad_batches=cfg.trainer.accumulate_grad_batches,
         gradient_clip_val=cfg.trainer.gradient_clip_val,
         log_every_n_steps=20,
-        callbacks=[ckpt_cb],
+        callbacks=callbacks,
         enable_progress_bar=True,
     )
 
