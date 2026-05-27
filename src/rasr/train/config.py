@@ -119,6 +119,7 @@ class TrainConfig(BaseModel):
 
 class SSLBlockCfg(BaseModel):
     source: str
+    limit: int | None = None
     min_db: float | None = None
     init_encoder_from: str | None = None  # parakeet ref/path whose encoder seeds SSL
 
