@@ -6,7 +6,7 @@
 
 defaults: [base, rtx6kpro/hw]
 
-name: parakeet-higgs-smoke
+name: v2-smoke
 
 model:
   scheme: parakeet

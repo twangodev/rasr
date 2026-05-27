@@ -3,7 +3,7 @@
 
 defaults: [base, rtx6kpro/hw]
 
-name: parakeet-radiotalk
+name: v1-radiotalk
 
 model:
   scheme: parakeet

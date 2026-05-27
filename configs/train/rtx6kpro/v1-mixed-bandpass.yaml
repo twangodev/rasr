@@ -6,7 +6,7 @@
 
 defaults: [base, rtx6kpro/hw]
 
-name: parakeet-mixed-bandpass
+name: v1-mixed-bandpass
 
 model:
   scheme: parakeet

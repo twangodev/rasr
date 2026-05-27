@@ -3,7 +3,7 @@
 # tuned in docs/higgs-lr-warmup-sweep.md. Compare ATCO2 val WER against the
 # SSL-free supervised baseline to measure CPT's contribution.
 defaults: [base, rtx6kpro/hw]
-name: parakeet-higgs-ssl
+name: v2-ssl
 model:
   scheme: parakeet
   ref: nvidia/parakeet-tdt-0.6b-v3

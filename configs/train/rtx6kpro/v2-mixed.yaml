@@ -11,7 +11,7 @@
 
 defaults: [base, rtx6kpro/hw]
 
-name: parakeet-higgs-mixed
+name: v2-mixed
 
 model:
   scheme: parakeet

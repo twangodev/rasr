@@ -7,7 +7,7 @@
 
 defaults: [base, rtx6kpro/hw]
 
-name: parakeet-higgs-sweep
+name: v2-sweep
 
 model:
   scheme: parakeet

@@ -5,7 +5,7 @@
 
 defaults: [base, rtx6kpro/hw]
 
-name: parakeet-mixed-50x
+name: v1-mixed-50x
 
 model:
   scheme: parakeet

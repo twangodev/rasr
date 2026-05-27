@@ -1,0 +1,33 @@
+# v2 "big boy" — PURE Higgs synthetic-only finetune of parakeet-tdt-0.6b-v3.
+# NO real anchor. Tests the thesis that Higgs's much-better ATC pronunciation
+# (vs TADA) makes synthetic-only viable on its own — the main reason the v1
+# recipe needed a real anchor was to correct TADA's mispronunciations, which
+# Higgs largely fixes. Full Higgs corpus (~566k clips), proven HPs (lr 1e-4,
+# cosine, warmup 5000, 50k steps).
+#
+# Compare against: v2-mixed (Higgs + real anchor), and the old tada synth-only
+# (0.344 on ATCO2). NOTE: ATCO2 val is EUROPEAN real radio; this is a US
+# synthetic model, so ATCO2 val UNDERSTATES it — also eval on US ATC.
+# Expected: one-time full-corpus WAV dump (~140 GB, a few hours) then ~10-12 hr train.
+
+defaults: [base, rtx6kpro/hw]
+
+name: v2-pure
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-noisy:train
+      weight: 1.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+trainer:
+  max_steps: 50000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}
