@@ -117,6 +117,22 @@ class TrainConfig(BaseModel):
     output: OutputCfg
 
 
+class SSLBlockCfg(BaseModel):
+    source: str
+    min_db: float | None = None
+    init_encoder_from: str | None = None  # parakeet ref/path whose encoder seeds SSL
+
+
+class SSLTrainConfig(BaseModel):
+    name: str
+    ssl: SSLBlockCfg
+    audio: AudioCfg = Field(default_factory=AudioCfg)
+    optimizer: OptimizerCfg = Field(default_factory=OptimizerCfg)
+    scheduler: SchedulerCfg = Field(default_factory=SchedulerCfg)
+    trainer: TrainerCfg
+    output: OutputCfg
+
+
 def _merge_with_defaults(path: Path, root: Path) -> DictConfig:
     """Resolve `defaults: [...]` recursively, then layer the current file on top.
 
@@ -152,6 +168,32 @@ def load_train_config(
         )
     OmegaConf.resolve(merged)
     return TrainConfig.model_validate(OmegaConf.to_container(merged, resolve=True))
+
+
+def load_ssl_train_config(
+    path: Path,
+    overrides: list[str] | None = None,
+) -> SSLTrainConfig:
+    """Load an SSL training YAML, resolve `defaults:`, apply overrides, validate.
+
+    Mirrors `load_train_config`. SSLTrainConfig declares only the fields it needs
+    (name/ssl/audio/optimizer/scheduler/trainer/output); extra keys inherited from
+    `base`/`hw` defaults (e.g. `data:`, `augmentation:`, `model:`) are ignored by
+    Pydantic. The SSL recipe maps the inherited `data.audio` block onto `audio` if
+    no top-level `audio` is present, so hardware audio defaults still apply.
+    """
+    path = Path(path).resolve()
+    root = _find_configs_root(path)
+    merged = _merge_with_defaults(path, root)
+    if overrides:
+        merged = OmegaConf.merge(merged, OmegaConf.from_dotlist(list(overrides)))
+    OmegaConf.resolve(merged)
+    container = OmegaConf.to_container(merged, resolve=True)
+    if "audio" not in container and isinstance(container.get("data"), dict):
+        data_audio = container["data"].get("audio")
+        if isinstance(data_audio, dict):
+            container["audio"] = data_audio
+    return SSLTrainConfig.model_validate(container)
 
 
 def _find_configs_root(path: Path) -> Path:

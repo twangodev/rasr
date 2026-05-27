@@ -68,3 +68,29 @@ def run(
 
     final_path = nemo_run(cfg)
     console.print(f"[green]Training done.[/green] Saved: {final_path}")
+
+
+@app.command()
+def ssl(
+    config: Annotated[
+        Path,
+        typer.Option("--config", "-c", exists=True, dir_okay=False, readable=True),
+    ],
+    dry_run: Annotated[bool, typer.Option("--dry-run")] = False,
+    overrides: Annotated[list[str] | None, typer.Argument()] = None,
+) -> None:
+    """Continue-pretrain an encoder with SSL on unlabeled audio."""
+    from rasr.train.config import load_ssl_train_config
+
+    cfg = load_ssl_train_config(config, overrides=overrides)
+    console.print(f"[green]Loaded SSL config:[/green] {cfg.name}")
+    console.print(f"  source:   {cfg.ssl.source}")
+    console.print(f"  init_from:{cfg.ssl.init_encoder_from}")
+    console.print(f"  steps:    {cfg.trainer.max_steps}")
+    console.print(f"  output:   {cfg.output.dir}")
+    if dry_run:
+        console.print("[yellow]--dry-run: skipping trainer.[/yellow]")
+        return
+    from rasr.train.ssl import run as ssl_run
+
+    console.print(f"[green]SSL done.[/green] Saved: {ssl_run(cfg)}")
