@@ -170,6 +170,11 @@ def run(cfg: SSLTrainConfig) -> Path:
     ssl_cfg.train_ds.batch_size = cfg.trainer.batch_size
     ssl_cfg.train_ds.num_workers = cfg.trainer.num_workers
     ssl_cfg.train_ds.sample_rate = cfg.audio.sample_rate
+    # Keep the NeMo dataloader's duration filter in sync with the manifest cap.
+    # Otherwise NEST_CFG's hardcoded max_duration silently re-drops every clip the
+    # manifest kept (e.g. TartanAviation recordings run minutes-long, far past 60s).
+    ssl_cfg.train_ds.max_duration = cfg.audio.max_duration
+    ssl_cfg.train_ds.min_duration = cfg.audio.min_duration
     OmegaConf.resolve(ssl_cfg)
     assert int(ssl_cfg.encoder.feat_in) == para_feat_in, ssl_cfg.encoder.feat_in
 
