@@ -1,0 +1,26 @@
+# SSL->finetune: load the TartanAviation-CPT'd encoder (from parakeet-ssl-tartan)
+# into parakeet-tdt-0.6b-v3 and finetune on synthetic Higgs with the lr/warmup
+# tuned in docs/higgs-lr-warmup-sweep.md. Compare ATCO2 val WER against the
+# SSL-free supervised baseline to measure CPT's contribution.
+defaults: [base, rtx6kpro/hw]
+name: parakeet-higgs-ssl
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+  init_encoder_from: ckpt/parakeet-ssl-tartan/final.nemo
+optimizer:
+  lr: 2.5e-5
+scheduler:
+  warmup_steps: 500
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-noisy:train
+      weight: 1.0
+      limit: 200000
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+trainer:
+  max_steps: 20000
+  val_check_interval: 2000
+output:
+  dir: ckpt/${name}

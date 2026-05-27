@@ -101,3 +101,34 @@ TartanAviation (44.1k WAV, unlabeled)
 
 - Optimizing the WAV-dump path (real Lhotse streaming) — tracked separately.
 - Pseudo-labeled self-training (a different semi-supervised axis).
+
+## Run order
+
+End-to-end sequence to reproduce the SSL->finetune pipeline from a fresh clone:
+
+1. **Download TartanAviation** per `docs/data-tartanaviation.md`; set `ssl.source`
+   in `configs/train/rtx6kpro/parakeet-ssl-tartan.yaml` to the local glob of WAV
+   files (e.g. `data/tartanaviation/**/*.wav`).
+
+2. **SSL continued pretraining** (overnight):
+   ```bash
+   HF_HUB_OFFLINE=1 rasr train ssl -c configs/train/rtx6kpro/parakeet-ssl-tartan.yaml
+   ```
+   Output: `ckpt/parakeet-ssl-tartan/final.nemo` — the TartanAviation-adapted
+   Parakeet encoder.
+
+3. **Supervised finetune from the CPT'd encoder**:
+   ```bash
+   HF_HUB_OFFLINE=1 rasr train run -c configs/train/rtx6kpro/parakeet-higgs-ssl.yaml
+   ```
+   The recipe loads `ckpt/parakeet-ssl-tartan/final.nemo` into the Parakeet
+   encoder via `model.init_encoder_from` before finetuning on Higgs-noisy.
+   Output: `ckpt/parakeet-higgs-ssl/final.nemo`.
+
+4. **Evaluate and compare WER**:
+   ```bash
+   rasr eval run -c configs/eval/atco2-val.yaml model=ckpt/parakeet-higgs-ssl/final.nemo
+   rasr eval run -c configs/eval/atco2-val.yaml model=ckpt/parakeet-higgs/final.nemo
+   ```
+   Compare ATCO2 val WER between `parakeet-higgs-ssl` (CPT + finetune) and the
+   SSL-free supervised baseline (`parakeet-higgs`) to measure CPT's contribution.
