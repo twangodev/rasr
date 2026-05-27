@@ -10,6 +10,7 @@ class ModelCfg(BaseModel):
     scheme: str
     ref: str
     language: str | None = None
+    init_encoder_from: str | None = None  # path to an SSL .nemo whose encoder weights to load
 
 
 class DatasetCfg(BaseModel):

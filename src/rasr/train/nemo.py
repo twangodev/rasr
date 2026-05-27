@@ -70,6 +70,26 @@ def run(cfg: TrainConfig) -> Path:
     print(f"[rasr.train] loading base model: {cfg.model.ref}")
     model = nemo_asr.models.ASRModel.from_pretrained(cfg.model.ref)
 
+    if cfg.model.init_encoder_from:
+        from nemo.collections.asr.models import EncDecDenoiseMaskedTokenPredModel
+        try:
+            src = EncDecDenoiseMaskedTokenPredModel.restore_from(
+                cfg.model.init_encoder_from, map_location="cpu"
+            )
+        except Exception:
+            src = nemo_asr.models.ASRModel.restore_from(
+                cfg.model.init_encoder_from, map_location="cpu"
+            )
+        missing, unexpected = model.encoder.load_state_dict(
+            src.encoder.state_dict(), strict=False
+        )
+        print(
+            f"[rasr.train] loaded SSL encoder from {cfg.model.init_encoder_from} "
+            f"(missing={len(missing)} unexpected={len(unexpected)})"
+        )
+        assert not unexpected, f"unexpected encoder keys: {unexpected[:5]}"
+        del src
+
     sa = cfg.augmentation.spec_augment
     sp = cfg.augmentation.speed_perturb
     bp = cfg.augmentation.bandpass
