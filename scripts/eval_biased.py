@@ -99,6 +99,13 @@ def main() -> int:
         action="store_true",
         help="do not cap the per-clip bias list at %d terms" % _BIAS_LIST_CAP,
     )
+    parser.add_argument(
+        "--bias-mode",
+        choices=["v1", "v2"],
+        default="v2",
+        help="bias-term source: v1 (waypoints + airline-name shotgun) or "
+        "v2 (expanded ADS-B callsigns + waypoints). Default: v2.",
+    )
     args = parser.parse_args()
 
     from datasets import load_dataset
@@ -121,7 +128,7 @@ def main() -> int:
     refs = [ds[i]["text"].strip() for i in picked]
     bias_lists = []
     for i in picked:
-        terms = bias_terms_from_info(ds[i]["info"])
+        terms = bias_terms_from_info(ds[i]["info"], mode=args.bias_mode)
         if not args.no_bias_list_cap:
             terms = terms[:_BIAS_LIST_CAP]
         bias_lists.append(terms)
@@ -177,7 +184,7 @@ def main() -> int:
     print(f"  delta (biased - unbiased)        : {bi_corpus - ub_corpus:+.4f}")
     print(f"  unbiased corpus WER (canonical)  : {corpus_wer(refs, unbiased_hyps):.4f}")
     print(f"  biased   corpus WER (canonical)  : {corpus_wer(refs, biased_hyps):.4f}")
-    print(f"  clips={n}  alpha={args.alpha}")
+    print(f"  clips={n}  alpha={args.alpha}  bias_mode={args.bias_mode}")
     return 0
 
 
