@@ -224,3 +224,5 @@ runs/
 # Training artifacts
 data/cache/
 ckpt/
+lightning_logs/
+logs/

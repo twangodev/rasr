@@ -1,0 +1,28 @@
+# 500-step smoke run on the Higgs-Audio synthetic corpus. Mirrors
+# parakeet-smoke.yaml but swaps the synthetic source from tada-noisy to
+# higgs-noisy, to validate the new dataset loads/resamples/trains end-to-end
+# before committing to a full baseline. Expected wall clock: ~10 min on the
+# 6000 Pro (plus a short ~10k-clip WAV dump on first run).
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-higgs-smoke
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-noisy:train
+      weight: 1.0
+      limit: 10000
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+trainer:
+  max_steps: 500
+  val_check_interval: 100
+
+output:
+  dir: ckpt/${name}
