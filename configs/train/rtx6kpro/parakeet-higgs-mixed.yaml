@@ -1,0 +1,41 @@
+# 50k-step mixed run on the Higgs-Audio synthetic corpus. Same recipe as
+# parakeet-mixed.yaml (the proven ~0.15-WER path) but with the new
+# radiotalk-us-audio-higgs-noisy synthetic source in place of tada-noisy.
+# Real ATCO2/ATCOSIM upweighted 10x to anchor the distribution.
+#
+# HPs are the PROVEN mixed settings (base.yaml: lr 1e-4, cosine, warmup 5000),
+# NOT the lr/warmup sweep values (those were tuned on synthetic-only 3k-step
+# proxies and do not transfer to this 50k-step mixed regime — see
+# docs/higgs-lr-warmup-sweep.md). Expected wall clock ~10-12 hr on the 6000 Pro
+# (plus a one-time ~200k-clip Higgs WAV dump on first run).
+
+defaults: [base, rtx6kpro/hw]
+
+name: parakeet-higgs-mixed
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-noisy:train
+      weight: 1.0
+      limit: 200000
+    - dataset: hf:jlvdoorn/atco2-asr:train
+      weight: 10.0
+    - dataset: hf:jlvdoorn/atco2-asr-atcosim:train
+      weight: 10.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+augmentation:
+  noise:
+    enabled: false
+
+trainer:
+  max_steps: 50000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}
