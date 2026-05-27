@@ -6,10 +6,13 @@ from rasr.eval.metrics.wer import (
     corpus_cer,
     corpus_numeric_wer,
     corpus_wer,
+    digit_aware_transform,
     summarize,
     utt_cer,
     utt_numeric_wer,
     utt_wer,
+    utt_wer_digit_aware,
+    wer_digit_aware,
 )
 
 __all__ = [
@@ -18,8 +21,11 @@ __all__ = [
     "corpus_cer",
     "corpus_numeric_wer",
     "corpus_wer",
+    "digit_aware_transform",
     "summarize",
     "utt_cer",
     "utt_numeric_wer",
     "utt_wer",
+    "utt_wer_digit_aware",
+    "wer_digit_aware",
 ]

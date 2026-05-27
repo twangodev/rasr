@@ -23,6 +23,33 @@ _ATC_NUMBER_VARIANTS = {
 _DIGIT_RE = re.compile(r"^\d+(?:\.\d+)?$")
 _PUNCT_STRIP = ".,!?;:'\""
 
+# Single-word number tokens -> their digit/symbol form. Used by the
+# digit-aware WER so that "two one zero" and "210" compare as equal. Only the
+# unambiguous single-digit cardinals (plus ATC variants and the decimal point)
+# are mapped; multi-word composites like "two hundred" are intentionally left
+# alone (collapsing them reliably needs a full number parser, which is out of
+# scope — ATC speech overwhelmingly uses digit-by-digit readout anyway).
+_WORD_TO_DIGIT = {
+    "zero": "0",
+    "oh": "0",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+    # ATC pronunciation variants.
+    "niner": "9",
+    "tree": "3",
+    "fife": "5",
+    # Decimal markers (frequencies, "one one eight decimal one").
+    "point": ".",
+    "decimal": ".",
+}
+
 
 def _extract_numeric_tokens(text: str) -> str:
     """Return the subsequence of `text` containing only numeric content.
@@ -61,6 +88,87 @@ canonical_char_transform = jiwer.Compose(
         jiwer.ReduceToListOfListOfChars(),
     ]
 )
+
+
+def _map_number_words(text: str) -> str:
+    """Replace single-word number tokens with their digit/symbol form.
+
+    Operates token-by-token on whitespace-split text. A trailing/leading
+    decimal point produced from "point"/"decimal" is left as a standalone
+    "." token; downstream RemovePunctuation in the canonical transform handles
+    any residue, but the digit tokens themselves survive so "two one zero"
+    becomes "2 1 0" and matches "210" only after the contiguous-digit merge
+    below. To make "two one zero" == "210" we also glue runs of adjacent
+    single-digit tokens together.
+    """
+    raw = text.lower().split()
+    mapped: list[str] = []
+    for tok in raw:
+        clean = tok.strip(_PUNCT_STRIP)
+        mapped.append(_WORD_TO_DIGIT.get(clean, tok))
+    # Merge runs of adjacent single digits into one number token so that a
+    # digit-by-digit readout ("2 1 0") collapses to the written form ("210").
+    out: list[str] = []
+    buf: list[str] = []
+    for tok in mapped:
+        if len(tok) == 1 and tok.isdigit():
+            buf.append(tok)
+        elif tok == ".":
+            buf.append(".")
+        else:
+            if buf:
+                out.append("".join(buf))
+                buf = []
+            out.append(tok)
+    if buf:
+        out.append("".join(buf))
+    return " ".join(out)
+
+
+class _NumberWordsToDigits:
+    """jiwer-compatible transform: number-word normalization, then canonical."""
+
+    def __call__(self, sentences):
+        if isinstance(sentences, str):
+            sentences = [sentences]
+        return canonical_transform([_map_number_words(s) for s in sentences])
+
+
+digit_aware_transform = _NumberWordsToDigits()
+
+
+def wer_digit_aware(refs: list[str], hyps: list[str]) -> float:
+    """Corpus WER where spoken digits and written digits compare as equal.
+
+    Number-words ("two one zero", with ATC variants niner/tree/fife and
+    "point"/"decimal") are mapped to digit tokens and adjacent single digits
+    are merged ("2 1 0" -> "210") on BOTH references and hypotheses before the
+    standard canonical (lowercase/strip-punct) WER is computed. This removes
+    the digit-spelling mismatch that otherwise inflates ATC WER and adds noise
+    to biased-vs-unbiased comparisons.
+    """
+    if not refs:
+        return float("nan")
+    return float(
+        jiwer.wer(
+            refs,
+            hyps,
+            reference_transform=digit_aware_transform,
+            hypothesis_transform=digit_aware_transform,
+        )
+    )
+
+
+def utt_wer_digit_aware(ref: str, hyp: str) -> float:
+    """Per-utterance digit-aware WER (see :func:`wer_digit_aware`)."""
+    return float(
+        jiwer.wer(
+            ref,
+            hyp,
+            reference_transform=digit_aware_transform,
+            hypothesis_transform=digit_aware_transform,
+        )
+    )
 
 
 def corpus_wer(refs: list[str], hyps: list[str]) -> float:
@@ -171,3 +279,20 @@ def _percentile(values: list[float], pct: float) -> float:
     if f == c:
         return float(sorted_v[f])
     return float(sorted_v[f] + (sorted_v[c] - sorted_v[f]) * (k - f))
+
+
+# Inline sanity checks for the digit-aware WER (cheap; runs at import only when
+# this module is executed directly).
+if __name__ == "__main__":
+    assert wer_digit_aware(["turn two one zero"], ["turn 210"]) == 0.0, (
+        "digit-aware WER should treat 'two one zero' == '210'"
+    )
+    assert wer_digit_aware(["niner tree fife"], ["935"]) == 0.0, (
+        "ATC variants niner/tree/fife should map to 9/3/5 and merge"
+    )
+    assert wer_digit_aware(["one one eight decimal one"], ["118.1"]) == 0.0, (
+        "'decimal' should map to '.' and merge into the frequency"
+    )
+    # A genuine digit error must still register.
+    assert wer_digit_aware(["turn two one zero"], ["turn 220"]) > 0.0
+    print("wer_digit_aware sanity checks passed")
