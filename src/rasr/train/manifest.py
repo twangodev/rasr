@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import glob
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 
@@ -38,6 +40,40 @@ def _resample(arr: np.ndarray, src_sr: int, dst_sr: int) -> np.ndarray:
     return librosa.resample(arr.astype(np.float32), orig_sr=src_sr, target_sr=dst_sr)
 
 
+def _load_hf_streaming(repo: str, split: str):
+    """Stream an HF dataset split, with an offline fallback to the hub cache.
+
+    The normal path (`load_dataset(repo, streaming=True)`) works online and for
+    any repo previously materialized by `datasets` (it has a cached builder
+    module). A repo pulled only via `hf download` lives in the hub *snapshot*
+    cache with no builder module, so offline resolution raises ConnectionError.
+    In that case we resolve the cached snapshot via `snapshot_download(...,
+    local_files_only=True)` and stream its parquet shards directly. This keeps
+    fresh-clone (online) behavior unchanged while letting an as-yet-unpushed
+    dataset be trained from cache; it assumes the snapshot's parquet files are
+    all the requested split (true for single-split radiotalk corpora).
+    """
+    try:
+        return hf_load_dataset(repo, split=split, streaming=True)
+    except ConnectionError:
+        from huggingface_hub import snapshot_download
+
+        snap = snapshot_download(
+            repo,
+            repo_type="dataset",
+            allow_patterns=["*.parquet"],
+            local_files_only=True,
+        )
+        files = sorted(glob.glob(os.path.join(snap, "**", "*.parquet"), recursive=True))
+        if not files:
+            raise RuntimeError(
+                f"offline fallback for {repo!r}: no parquet shards under {snap}"
+            )
+        return hf_load_dataset(
+            "parquet", data_files=files, split="train", streaming=True
+        )
+
+
 def build_manifest(
     spec: DatasetCfg,
     audio_cfg: AudioCfg,
@@ -71,7 +107,7 @@ def build_manifest(
     if manifest_path.exists():
         return manifest_path
 
-    ds = hf_load_dataset(repo, split=split, streaming=True)
+    ds = _load_hf_streaming(repo, split)
     target_sr = audio_cfg.sample_rate
     min_dur = audio_cfg.min_duration
     max_dur = audio_cfg.max_duration
