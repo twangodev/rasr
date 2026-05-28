@@ -98,12 +98,18 @@ def main() -> int:
         flush=True,
     )
 
-    print(f"[data] loading {args.dataset}:{args.split} ...", flush=True)
-    ds = load_dataset(args.dataset, split=args.split)
-    n = len(ds) if args.limit <= 0 else min(args.limit, len(ds))
-    picked = list(range(n))
-    audios = [ds[i]["audio"]["array"].astype("float32") for i in picked]
-    refs = [ds[i]["text"].strip() for i in picked]
+    print(f"[data] streaming {args.dataset}:{args.split} (limit={args.limit}) ...", flush=True)
+    # streaming=True avoids slurping the full dataset to local arrow cache — only
+    # the first `limit` clips are actually fetched. For non-streaming datasets,
+    # load_dataset would otherwise download every shard.
+    ds_iter = load_dataset(args.dataset, split=args.split, streaming=True)
+    audios, refs = [], []
+    for i, row in enumerate(ds_iter):
+        if args.limit > 0 and i >= args.limit:
+            break
+        audios.append(row["audio"]["array"].astype("float32"))
+        refs.append((row.get("text") or row.get("text_normalized") or "").strip())
+    n = len(audios)
 
     print("\n[sanity] transcribing clip 0 ...", flush=True)
     sanity = _text(model.transcribe(audio=[audios[0]], batch_size=1, verbose=False)[0])
