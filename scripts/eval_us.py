@@ -86,6 +86,7 @@ def main() -> int:
     parser.add_argument("--dataset", required=True, help="HF dataset id")
     parser.add_argument("--split", default="test", help="dataset split")
     parser.add_argument("--limit", type=int, default=0, help="cap clips (0 = all)")
+    parser.add_argument("--skip", type=int, default=0, help="skip the first N clips (to land past a training cutoff)")
     parser.add_argument("--batch-size", type=int, default=8, help="transcribe batch size (CPU)")
     args = parser.parse_args()
 
@@ -98,11 +99,10 @@ def main() -> int:
         flush=True,
     )
 
-    print(f"[data] streaming {args.dataset}:{args.split} (limit={args.limit}) ...", flush=True)
-    # streaming=True avoids slurping the full dataset to local arrow cache — only
-    # the first `limit` clips are actually fetched. For non-streaming datasets,
-    # load_dataset would otherwise download every shard.
+    print(f"[data] streaming {args.dataset}:{args.split} (skip={args.skip} limit={args.limit}) ...", flush=True)
     ds_iter = load_dataset(args.dataset, split=args.split, streaming=True)
+    if args.skip > 0:
+        ds_iter = ds_iter.skip(args.skip)
     audios, refs = [], []
     for i, row in enumerate(ds_iter):
         if args.limit > 0 and i >= args.limit:
