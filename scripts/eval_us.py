@@ -116,12 +116,94 @@ def main() -> int:
     print(f"  REF : {refs[0]}", flush=True)
     print(f"  HYP : {sanity}", flush=True)
 
-    print(f"\n[decode] greedy, {n} clips, batch_size={args.batch_size} ...", flush=True)
-    hyps = [_text(h) for h in model.transcribe(audio=audios, batch_size=args.batch_size, verbose=False)]
+    # Enable per-word confidence so we can correlate WER with model confidence.
+    # NeMo TDT confidence via tsallis-entropy; preserves word_confidence on Hypothesis.
+    from omegaconf import OmegaConf, open_dict
+    dcfg = OmegaConf.create(OmegaConf.to_container(model.cfg.decoding, resolve=True))
+    with open_dict(dcfg):
+        dcfg.strategy = "greedy_batch"
+        dcfg.confidence_cfg = {
+            "preserve_frame_confidence": True,
+            "preserve_token_confidence": True,
+            "preserve_word_confidence": True,
+            "aggregation": "mean",
+            "method_cfg": {
+                "name": "entropy", "entropy_type": "tsallis",
+                "alpha": 0.33, "entropy_norm": "lin",
+            },
+        }
+    try:
+        model.change_decoding_strategy(dcfg)
+    except Exception as e:
+        print(f"[warn] could not enable confidence_cfg: {e}", flush=True)
+
+    print(f"\n[decode] greedy + confidence, {n} clips, batch_size={args.batch_size} ...", flush=True)
+    hyp_objs = model.transcribe(audio=audios, batch_size=args.batch_size,
+                                verbose=False, return_hypotheses=True)
+    hyps, mean_confs, min_confs = [], [], []
+    for h in hyp_objs:
+        hyps.append(_text(h))
+        wc = getattr(h, "word_confidence", None)
+        vals = []
+        if wc:
+            for v in wc:
+                vals.append(float(v.item()) if hasattr(v, "item") else float(v))
+        if vals:
+            mean_confs.append(sum(vals) / len(vals))
+            min_confs.append(min(vals))
+        else:
+            mean_confs.append(float("nan"))
+            min_confs.append(float("nan"))
 
     canonical = corpus_wer(refs, hyps)
     digit_aware = wer_digit_aware(refs, hyps)
     numeric = corpus_numeric_wer(refs, hyps)
+
+    # per-clip WER (canonical) for correlation
+    import jiwer
+    from rasr.eval.metrics.wer import canonical_transform
+    per_wer = []
+    for r, h in zip(refs, hyps):
+        try:
+            per_wer.append(jiwer.wer(
+                r, h,
+                truth_transform=canonical_transform,
+                hypothesis_transform=canonical_transform,
+            ))
+        except Exception:
+            per_wer.append(1.0 if r.strip() else 0.0)
+
+    # correlation: confidence vs per-clip WER (high conf should ↔ low WER)
+    def _spearman(a, b):
+        import math
+        pairs = [(x, y) for x, y in zip(a, b)
+                 if not (math.isnan(x) or math.isnan(y))]
+        if len(pairs) < 5:
+            return float("nan")
+        try:
+            from scipy.stats import spearmanr
+            r, _ = spearmanr([p[0] for p in pairs], [p[1] for p in pairs])
+            return float(r)
+        except Exception:
+            return float("nan")
+
+    rho_mean = _spearman(mean_confs, per_wer)
+    rho_min = _spearman(min_confs, per_wer)
+
+    # quartile breakdown by mean confidence: WER per bucket (does conf rank-order quality?)
+    import statistics as _st
+    valid = [(c, w) for c, w in zip(mean_confs, per_wer)
+             if not (isinstance(c, float) and (c != c))]
+    bucket_str = "(no confidence data)"
+    if len(valid) >= 4:
+        valid.sort(key=lambda x: x[0])
+        q = len(valid) // 4
+        buckets = [valid[:q], valid[q:2*q], valid[2*q:3*q], valid[3*q:]]
+        labels = ["lowest-conf", "Q2", "Q3", "highest-conf"]
+        bucket_str = " | ".join(
+            f"{lab}: WER={sum(w for _, w in b)/len(b):.3f} (conf≈{_st.mean(c for c, _ in b):.3f})"
+            for lab, b in zip(labels, buckets) if b
+        )
 
     print("\n" + "=" * 72)
     print(f"WER  --  model={args.model}")
@@ -131,6 +213,11 @@ def main() -> int:
     print(f"  canonical WER           : {canonical:.4f}")
     print(f"  digit-aware WER         : {digit_aware:.4f}")
     print(f"  numeric-only WER        : {numeric:.4f}")
+    print("-" * 72)
+    print(f"  mean per-word conf      : {sum(c for c in mean_confs if c == c)/max(1, sum(1 for c in mean_confs if c == c)):.4f}")
+    print(f"  Spearman ρ(mean_conf, per-clip WER): {rho_mean:+.3f}  (negative = good: high conf ↔ low WER)")
+    print(f"  Spearman ρ(min_conf,  per-clip WER): {rho_min:+.3f}")
+    print(f"  quartile WER by conf    : {bucket_str}")
     print("=" * 72)
     return 0
 
