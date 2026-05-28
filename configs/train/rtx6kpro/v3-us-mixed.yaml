@@ -1,0 +1,43 @@
+# v3 — US-mixed: Higgs synthetic + US REAL anchor (jacktol LiveATC).
+# Direct response to: v2-mixed has the wrong (European) anchor for US ATC, and
+# v2-pure (synth-only) doesn't transfer to real US audio (numeric WER actually
+# worsens with training — see overnight findings). v3 swaps the EU anchor
+# (ATCO2/ATCOSIM) for a US REAL one (jacktol/ATC-ASR-Dataset:train, 6497 clips
+# of LiveATC-derived US ATC) ×10 — same proven mixed pattern, right domain.
+#
+# Hypothesis: should land 0.10-0.15 range on jacktol-test (matching what
+# v1/v2-mixed achieve on European ATCO2). EU performance may suffer (no EU
+# anchor) — that's the right trade for a US target.
+#
+# Caveats: jacktol is community-quality LiveATC transcripts; label noise gets
+# amplified by the ×10 weight. Could fold in atcosim (cleaner European
+# simulator labels) at lower weight if noise hurts.
+
+defaults: [base, rtx6kpro/hw]
+
+name: v3-us-mixed
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-noisy:train
+      weight: 1.0
+      limit: 200000                                       # synthetic bulk
+    - dataset: hf:jacktol/ATC-ASR-Dataset:train
+      weight: 10.0                                        # US REAL anchor
+  validation:
+    - dataset: hf:jacktol/ATC-ASR-Dataset:validation      # US val -> proper US ckpt selection
+
+augmentation:
+  noise:
+    enabled: false
+
+trainer:
+  max_steps: 50000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}
