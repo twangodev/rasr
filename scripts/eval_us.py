@@ -159,19 +159,10 @@ def main() -> int:
     digit_aware = wer_digit_aware(refs, hyps)
     numeric = corpus_numeric_wer(refs, hyps)
 
-    # per-clip WER (canonical) for correlation
-    import jiwer
-    from rasr.eval.metrics.wer import canonical_transform
-    per_wer = []
-    for r, h in zip(refs, hyps):
-        try:
-            per_wer.append(jiwer.wer(
-                r, h,
-                truth_transform=canonical_transform,
-                hypothesis_transform=canonical_transform,
-            ))
-        except Exception:
-            per_wer.append(1.0 if r.strip() else 0.0)
+    # per-clip WER for correlation — reuse the corpus metric on singletons so the
+    # numbers match the headline canonical WER (jiwer-on-single-string mis-handled
+    # the project's list-of-list transform and returned all-1.0).
+    per_wer = [corpus_wer([r], [h]) for r, h in zip(refs, hyps)]
 
     # correlation: confidence vs per-clip WER (high conf should ↔ low WER)
     def _spearman(a, b):
