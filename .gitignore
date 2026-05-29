@@ -226,3 +226,7 @@ data/cache/
 ckpt/
 lightning_logs/
 logs/
+
+# wip/ archive of shelved experiments: track recipes + notes, ignore heavy model binaries
+wip/**/*.nemo
+wip/**/*.ckpt
