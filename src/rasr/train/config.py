@@ -103,6 +103,7 @@ class TrainerCfg(BaseModel):
     accumulate_grad_batches: int = 1
     gradient_clip_val: float = 1.0
     val_check_interval: int = 1000
+    resume_from: str | None = None  # Lightning ckpt_path to resume from; "last" picks the latest in output.dir
 
 
 class OutputCfg(BaseModel):

@@ -187,8 +187,18 @@ def run(cfg: TrainConfig) -> Path:
         enable_progress_bar=True,
     )
 
-    print(f"[rasr.train] starting fit: max_steps={cfg.trainer.max_steps}")
-    trainer.fit(model)
+    resume = cfg.trainer.resume_from
+    if resume == "last":
+        last = output_dir / "last.ckpt"
+        resume = str(last) if last.exists() else None
+    elif resume and not Path(resume).exists():
+        raise FileNotFoundError(f"trainer.resume_from not found: {resume}")
+
+    print(
+        f"[rasr.train] starting fit: max_steps={cfg.trainer.max_steps}"
+        + (f" (resuming from {resume})" if resume else "")
+    )
+    trainer.fit(model, ckpt_path=resume)
 
     final_path = output_dir / "final.nemo"
     model.save_to(str(final_path))
