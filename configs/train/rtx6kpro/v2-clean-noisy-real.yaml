@@ -1,0 +1,47 @@
+# R1 of the rasr-parakeet-v2 campaign: the multi-condition recipe on a PLAIN
+# encoder (no SSL CPT). Tests the core bet in isolation — does clean+noisy+real
+# beat v1? — before stacking CPT on top (R2). Change ONE thing vs v1: the data.
+#
+# Three conditions, each a distinct gap:
+#   clean higgs  -> vocab/callsign acquisition (crisp signal)
+#   noisy higgs  -> acoustic robustness (3 VHF degradations per utterance)
+#   atco2/atcosim -> true radio acoustics (the WER lever; only 8,517 real clips)
+#
+# Real multiplier = 35x (vs v1's 10x). v1 capped synthetic at 200k so 10x gave a
+# ~30% real fraction; full clean+noisy is ~695k, so matching v1's proven 30% real
+# fraction needs ~35x. This also matches v1's per-real-clip exposure (~85x over
+# the run) — same anchoring discipline, more diverse synthetic. noise-aug stays
+# off (the noisy set already supplies degradation; keep the clean set clean).
+# ~60k steps = ~3 passes over the ~1M-line manifest (fewer epochs, more diversity).
+
+defaults: [base, rtx6kpro/hw]
+
+name: v2-clean-noisy-real
+
+model:
+  scheme: parakeet
+  ref: nvidia/parakeet-tdt-0.6b-v3
+
+data:
+  train:
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-clean:train
+      weight: 1.0
+    - dataset: hf:twangodev/radiotalk-us-audio-higgs-noisy:train
+      weight: 1.0
+    - dataset: hf:jlvdoorn/atco2-asr:train
+      weight: 35.0
+    - dataset: hf:jlvdoorn/atco2-asr-atcosim:train
+      weight: 35.0
+  validation:
+    - dataset: hf:jlvdoorn/atco2-asr:validation
+
+augmentation:
+  noise:
+    enabled: false
+
+trainer:
+  max_steps: 60000
+  val_check_interval: 2000
+
+output:
+  dir: ckpt/${name}
